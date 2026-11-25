@@ -5,12 +5,16 @@ import {
   Wrench, 
   Droplet, 
   Sparkles, 
-  CheckCircle, 
-  Download, 
+  ShieldCheck, 
+  CheckCircle2, 
   ArrowRight, 
-  Tag
+  ArrowUpRight,
+  Tag,
+  Clock,
+  ExternalLink
 } from 'lucide-react';
 import { siteData } from '../data/siteData';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function Services({ onOpenCoupon }) {
   const location = useLocation();
@@ -31,406 +35,436 @@ export default function Services({ onOpenCoupon }) {
   }, [location.hash]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F8F7F9] w-full overflow-x-hidden text-[#172638] font-sans">
+    <div className="flex flex-col min-h-screen bg-[#FFFFFF] w-full overflow-x-hidden text-[#191919] font-sans">
       
-      {/* Header Banner matching reference styling */}
+      {/* 1. Header Banner - HydroLOGICA Deep Navy (#000F26) with Bright Agua Glow */}
       <section 
-        className="text-white pt-12 sm:pt-16 pb-12 sm:pb-16 border-b border-[#16466F] relative overflow-hidden"
+        className="text-white pt-16 sm:pt-20 pb-16 sm:pb-20 relative overflow-hidden bg-[#000F26]"
         style={{
-          background: 'radial-gradient(1000px 500px at 85% 0, #16466F 0, transparent 70%), #002D55'
+          background: 'radial-gradient(1000px 500px at 80% 20%, rgba(0, 168, 235, 0.16) 0%, transparent 70%), #000F26'
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-          <span className="font-sans font-semibold text-xs sm:text-sm uppercase tracking-widest text-[#D5BBD3] border-l-[3px] border-[#6E2C6B] pl-3 inline-block mb-3">
-            Contoocook Artesian Well Company
-          </span>
-          <h1 className="font-serif font-bold text-3xl xs:text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
-            SERVICES
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 text-center sm:text-left relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#00A8EB]/40 text-xs font-semibold text-[#A4DEF3] mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#AAD651] animate-pulse"></span>
+            <span>Contoocook Artesian Well Company • Founded 1936</span>
+          </div>
+
+          <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+            Comprehensive <span className="text-[#00A8EB]">Groundwater Services</span>
           </h1>
-          <p className="mt-3 font-sans font-normal text-base sm:text-lg lg:text-xl text-[#C5D6E4] max-w-2xl leading-relaxed">
+
+          <p className="mt-4 font-sans font-normal text-base sm:text-lg lg:text-xl text-[#E2EFF3]/90 max-w-2xl leading-relaxed">
             Well Drilling • Pump Services • Water Testing & Filtration • Hydrofracking
           </p>
         </div>
       </section>
 
-      {/* Quick Jump Bar */}
-      <div className="sticky top-0 z-30 bg-[#002D55]/95 backdrop-blur-md border-b border-[#16466F] shadow-md">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center space-x-2 sm:space-x-4 py-3 overflow-x-auto no-scrollbar font-sans font-semibold text-xs sm:text-sm uppercase tracking-wider text-[#D5BBD3]">
-            <span className="text-[#A875A5] shrink-0 hidden md:inline font-medium">Jump To:</span>
-            <a href="#welldrilling" className="shrink-0 px-3.5 py-1.5 rounded-full bg-[#16466F] hover:bg-[#6E2C6B] hover:text-white transition-colors border border-[#16466F] text-white">
+      {/* 2. Quick Jump Sticky Bar */}
+      <div className="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-[#E2EFF3] shadow-xs">
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24">
+          <div className="flex items-center space-x-2 sm:space-x-3 py-3.5 overflow-x-auto no-scrollbar font-heading font-semibold text-xs sm:text-sm">
+            <span className="text-[#61AFCD] shrink-0 hidden md:inline font-bold uppercase tracking-wider text-xs">Jump To:</span>
+            <a 
+              href="#welldrilling" 
+              className="shrink-0 px-4 py-2 rounded-full bg-[#E2EFF3] hover:bg-[#00A8EB] hover:text-white text-[#000F26] transition-colors"
+            >
               Well Drilling
             </a>
-            <a href="#pumpservices" className="shrink-0 px-3.5 py-1.5 rounded-full bg-[#16466F] hover:bg-[#6E2C6B] hover:text-white transition-colors border border-[#16466F] text-white">
+            <a 
+              href="#pumpservices" 
+              className="shrink-0 px-4 py-2 rounded-full bg-[#E2EFF3] hover:bg-[#00A8EB] hover:text-white text-[#000F26] transition-colors"
+            >
               Pump Services
             </a>
-            <a href="#watertesting" className="shrink-0 px-3.5 py-1.5 rounded-full bg-[#16466F] hover:bg-[#6E2C6B] hover:text-white transition-colors border border-[#16466F] text-white">
+            <a 
+              href="#watertesting" 
+              className="shrink-0 px-4 py-2 rounded-full bg-[#E2EFF3] hover:bg-[#00A8EB] hover:text-white text-[#000F26] transition-colors"
+            >
               Water Testing & Filtration
             </a>
-            <a href="#hydrofracking" className="shrink-0 px-3.5 py-1.5 rounded-full bg-[#16466F] hover:bg-[#6E2C6B] hover:text-white transition-colors border border-[#16466F] text-white">
-              Hydrofracking Services
+            <a 
+              href="#hydrofracking" 
+              className="shrink-0 px-4 py-2 rounded-full bg-[#E2EFF3] hover:bg-[#00A8EB] hover:text-white text-[#000F26] transition-colors"
+            >
+              Hydrofracking
             </a>
           </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-16 sm:space-y-20">
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 py-16 sm:py-24 space-y-20 sm:space-y-28">
 
         {/* 1. Well Drilling */}
-        <section id="welldrilling" className="scroll-mt-36">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
-              <div className="inline-flex items-center space-x-2 font-sans font-semibold text-xs uppercase tracking-wider text-[#172638] bg-[#E8DFE9] border border-[#D5BBD3] px-3 py-1 rounded">
-                <Wrench className="w-3.5 h-3.5 shrink-0 text-[#6E2C6B]" />
-                <span>State of NH Water Well License #1</span>
-              </div>
+        <section id="welldrilling" className="scroll-mt-32">
+          <ScrollReveal delay={0}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider text-[#00A8EB] bg-[#E2EFF3] px-3.5 py-1.5 rounded-full">
+                  <Wrench className="w-3.5 h-3.5" />
+                  <span>State of NH Water Well License #1</span>
+                </div>
 
-              <h2 className="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-[#172638] tracking-tight">
-                Well Drilling
-              </h2>
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] text-[#000F26] tracking-tight leading-tight">
+                  Artesian Well Drilling
+                </h2>
 
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                Artesian water well drilling in southern and central New Hampshire has been our specialty since 1936. In fact, our company has <strong>Water Well License #1</strong> from the State of New Hampshire. We invest in the drilling rigs, equipment, and people who can get the job done correctly. You can trust us not to overdrill or underdrill your well, respect your property, and communicate with you during the construction process.
-              </p>
-
-              <div className="bg-[#E8DFE9] p-4 sm:p-5 rounded-xl border-l-4 border-[#6E2C6B]">
-                <h4 className="font-serif font-bold text-base sm:text-lg text-[#172638] mb-1 tracking-tight">
-                  Why choose us? Because we go the extra gallon!
-                </h4>
-                <p className="font-sans font-normal text-xs sm:text-sm text-[#172638]/80 leading-relaxed">
-                  What makes us different is our preference for drilling artesian water wells that are <strong>larger than the standard wells</strong> offered by our competitors. Why? Because a bigger well provides more water for your immediate use. This means more water for the laundry, irrigation and showering in the morning, for example.
+                <p className="font-sans font-normal text-base text-[#191919]/75 leading-relaxed">
+                  Artesian water well drilling in southern and central New Hampshire has been our specialty since 1936. In fact, our company has <strong>Water Well License #1</strong> from the State of New Hampshire. We invest in the drilling rigs, equipment, and people who can get the job done correctly. You can trust us not to overdrill or underdrill your well, respect your property, and communicate with you during the construction process.
                 </p>
+
+                {/* Highlight Callout */}
+                <div className="bg-[#E2EFF3]/60 border border-[#00A8EB]/30 p-6 rounded-3xl">
+                  <h4 className="font-heading font-bold text-lg text-[#000F26] mb-2">
+                    Why choose us? Because we go the extra gallon!
+                  </h4>
+                  <p className="font-sans font-normal text-sm sm:text-base text-[#191919]/80 leading-relaxed">
+                    What makes us different is our preference for drilling artesian water wells that are <strong>larger than the standard wells</strong> offered by our competitors. Why? Because a bigger well provides more water for your immediate use. This means more water for the laundry, irrigation and showering in the morning.
+                  </p>
+                </div>
+
+                {/* Checklist */}
+                <div className="space-y-2.5 font-sans text-sm sm:text-base text-[#191919]/80">
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#00A8EB] shrink-0 mt-0.5" />
+                    <span>Our larger-sized well gives you more water at no extra cost.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#00A8EB] shrink-0 mt-0.5" />
+                    <span>Our professional, skilled staff keeps you informed every step of the way.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#AAD651] shrink-0 mt-0.5" />
+                    <span>You'll never go without water. Call us 7 days a week when your pump needs service.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#00A8EB] shrink-0 mt-0.5" />
+                    <span>We take every measure during construction to prevent contamination from entering your water supply.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#00A8EB] shrink-0 mt-0.5" />
+                    <span>Generations of Patenaudes have run our business with pride.</span>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center px-7 py-4 rounded-full bg-[#AAD651] hover:bg-[#bce468] text-[#191919] font-heading font-bold text-sm uppercase tracking-wider shadow-sm transition-all transform hover:scale-105 active:scale-95 duration-200"
+                  >
+                    <span>Click here for a FREE COST ESTIMATE</span>
+                    <ArrowRight className="w-4 h-4 ml-2" />
+                  </Link>
+                </div>
               </div>
 
-              <div className="space-y-2 pt-1 font-sans font-normal text-xs sm:text-sm text-[#172638]/80">
-                <div className="flex items-start space-x-2">
-                  <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                  <span>Our larger-sized well gives you more water at no extra cost.</span>
+              {/* Rig Photo & Sister Company Card */}
+              <div className="lg:col-span-5 space-y-6">
+                <div className="rounded-3xl overflow-hidden shadow-xl border border-[#E2EFF3] bg-[#000F26] group">
+                  <img 
+                    src="/images/drilling-rig.jpg" 
+                    alt="Contoocook Artesian Well Drilling Rig in NH" 
+                    className="w-full h-[320px] sm:h-[380px] object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="p-4 bg-white font-sans font-medium text-xs text-[#191919]/70 border-t border-[#E2EFF3]">
+                    Contoocook Artesian Well drilling rig on site in NH.
+                  </div>
                 </div>
-                <div className="flex items-start space-x-2">
-                  <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                  <span>Our professional, skilled staff keeps you informed every step of the way.</span>
-                </div>
-                <div className="flex items-start space-x-2">
-                  <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                  <span>You'll never go without water. Call us 7 days a week when your pump needs service.</span>
-                </div>
-                <div className="flex items-start space-x-2">
-                  <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                  <span>We take every measure during construction to prevent contamination from entering your water supply.</span>
-                </div>
-                <div className="flex items-start space-x-2">
-                  <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                  <span>Generations of Patenaudes have run our business with pride.</span>
+
+                {/* Sister Company: Pats Peak Ski Area Banner */}
+                <div className="bg-[#E2EFF3]/50 p-5 rounded-3xl border border-[#E2EFF3] flex items-center justify-between gap-4">
+                  <div>
+                    <span className="font-heading font-bold text-xs uppercase tracking-wider text-[#00A8EB] block">Sister Company</span>
+                    <p className="font-heading font-bold text-sm sm:text-base text-[#000F26]">Pats Peak Ski Area, Henniker, NH</p>
+                  </div>
+                  <img 
+                    src="/logos/pats-peak-logo.png" 
+                    alt="Pats Peak Ski Area in New Hampshire" 
+                    className="h-11 sm:h-12 w-auto object-contain bg-white p-1.5 rounded-xl border border-[#E2EFF3]"
+                  />
                 </div>
               </div>
 
-              <div className="pt-3 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#6E2C6B] hover:bg-[#854B82] text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider shadow-sm transition-all space-x-2 text-center"
-                >
-                  <span>Click here for a FREE COST ESTIMATE</span>
-                  <ArrowRight className="w-4 h-4 text-white shrink-0" />
-                </Link>
-              </div>
             </div>
-
-            <div className="lg:col-span-5 space-y-4">
-              <div className="rounded-2xl overflow-hidden shadow-md border border-[#D5BBD3] bg-white">
-                <img 
-                  src="/images/drilling-rig.jpg" 
-                  alt="Contoocook Artesian Well Drilling Rig in NH" 
-                  className="w-full h-auto max-w-full object-cover"
-                />
-                <div className="p-3 bg-[#E8DFE9] font-sans font-medium text-[11px] sm:text-xs text-[#172638]/80 border-t border-[#D5BBD3]">
-                  Contoocook Artesian Well drilling rig on site.
-                </div>
-              </div>
-
-              {/* Sister Company: Pats Peak Ski Area Banner */}
-              <div className="bg-white p-4 rounded-xl border border-[#D5BBD3] flex items-center justify-between gap-3 shadow-2xs">
-                <div>
-                  <span className="font-sans font-semibold text-[10px] uppercase tracking-wider text-[#172638]/70 block">Sister Company</span>
-                  <p className="font-serif font-bold text-xs sm:text-sm text-[#172638]">Pats Peak Ski Area, Henniker, NH</p>
-                </div>
-                <img 
-                  src="/logos/pats-peak-logo.png" 
-                  alt="Sister Company in New Hampshire" 
-                  className="h-10 sm:h-12 w-auto object-contain bg-white p-1 rounded border border-[#D5BBD3]"
-                />
-              </div>
-            </div>
-
-          </div>
+          </ScrollReveal>
         </section>
 
-        <hr className="border-[#D5BBD3]" />
+        <hr className="border-[#E2EFF3]" />
 
         {/* 2. Pump Services */}
-        <section id="pumpservices" className="scroll-mt-36">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
-            <div className="lg:col-span-5 order-2 lg:order-1">
-              <div className="bg-white p-5 sm:p-6 rounded-2xl border border-[#D5BBD3] space-y-3 sm:space-y-4 shadow-sm">
-                <h3 className="font-serif font-bold text-[#172638] text-base sm:text-lg uppercase tracking-wide border-b border-[#D5BBD3] pb-2">
-                  Why Choose Us to Install Your Well Pump?
-                </h3>
-                <ul className="space-y-2.5 sm:space-y-3 font-sans font-normal text-xs sm:text-sm text-[#172638]/80">
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                    <span>Contoocook Well has been installing pumps for more than 55 years. Our reputation for doing a good job is well established in Southern New Hampshire. Our family name is on every pump installation.</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                    <span>Our service techs are available 7 days a week. Someone is always on call to come to your home, every day of the week.</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                    <span>The pumps and components you need are in stock at our shop in Henniker. We keep a huge inventory so our customers don't have to wait. If you need it, we have it.</span>
-                  </li>
-                  <li className="flex items-start space-x-2">
-                    <CheckCircle className="w-4 h-4 text-[#6E2C6B] shrink-0 mt-0.5" />
-                    <span>You'll find a real person on the line when you need service. No leaving messages or waiting in frustration.</span>
-                  </li>
-                </ul>
-
-                {onOpenCoupon && (
-                  <div className="pt-2">
-                    <button
-                      onClick={onOpenCoupon}
-                      className="w-full flex items-center justify-center space-x-2 px-4 py-2.5 bg-[#002D55] hover:bg-[#16466F] text-white font-sans font-semibold rounded-xl text-xs uppercase tracking-wider transition-colors shadow-2xs cursor-pointer border border-[#16466F]"
-                    >
-                      <Tag className="w-4 h-4 text-[#D5BBD3] shrink-0" />
-                      <span>Use $50 Off Coupon on Pump Installation</span>
-                    </button>
+        <section id="pumpservices" className="scroll-mt-32">
+          <ScrollReveal delay={0}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              
+              {/* Left Column: Why Choose Us Box */}
+              <div className="lg:col-span-5 order-2 lg:order-1 space-y-6">
+                <div className="bg-[#000F26] text-white p-7 sm:p-8 rounded-3xl border border-white/10 shadow-xl space-y-5">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-[#AAD651]">
+                    <Clock className="w-3.5 h-3.5" />
+                    <span>7 Days Live Dispatch</span>
                   </div>
-                )}
+
+                  <h3 className="font-heading font-extrabold text-xl sm:text-2xl text-white tracking-tight">
+                    Why Choose Us to Install Your Well Pump?
+                  </h3>
+
+                  <ul className="space-y-4 font-sans font-normal text-sm text-[#E2EFF3]/80">
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#00A8EB] shrink-0 mt-0.5" />
+                      <span>Installing pumps for more than 55 years. Our family name is on every pump installation.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#AAD651] shrink-0 mt-0.5" />
+                      <span>Our service techs are available 7 days a week. Someone is always on call to come to your home.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#00A8EB] shrink-0 mt-0.5" />
+                      <span>The pumps and components you need are in stock at our shop in Henniker. We keep a huge inventory so our customers don't have to wait.</span>
+                    </li>
+                    <li className="flex items-start gap-2.5">
+                      <CheckCircle2 className="w-4 h-4 text-[#00A8EB] shrink-0 mt-0.5" />
+                      <span>You'll find a real person on the line when you need service. No leaving messages or waiting in frustration.</span>
+                    </li>
+                  </ul>
+
+                  {onOpenCoupon && (
+                    <div className="pt-2">
+                      <button
+                        onClick={onOpenCoupon}
+                        className="w-full flex items-center justify-center gap-2 px-5 py-3.5 bg-[#AAD651] hover:bg-[#bce468] text-[#191919] font-heading font-bold rounded-full text-xs uppercase tracking-wider transition-all transform hover:scale-105 active:scale-95 duration-200 cursor-pointer shadow-md"
+                      >
+                        <Tag className="w-4 h-4 text-[#191919]" />
+                        <span>$50 Off Coupon on Pump Installation</span>
+                      </button>
+                    </div>
+                  )}
+                </div>
+
+                <div className="rounded-3xl overflow-hidden shadow-md border border-[#E2EFF3] bg-white group">
+                  <img 
+                    src="/images/hero-truck.jpg" 
+                    alt="Contoocook Artesian Well Company pump service truck" 
+                    className="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="p-3 bg-[#E2EFF3]/60 font-sans font-medium text-xs text-[#191919]/70 text-center">
+                    Prompt pump service 7 days a week across NH.
+                  </div>
+                </div>
               </div>
+
+              {/* Right Column: Narrative */}
+              <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                <div className="inline-flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider text-[#00A8EB] bg-[#E2EFF3] px-3.5 py-1.5 rounded-full">
+                  <Droplet className="w-3.5 h-3.5" />
+                  <span>Prompt Replacement & Repair</span>
+                </div>
+
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] text-[#000F26] tracking-tight leading-tight">
+                  Well Pump Systems & Service
+                </h2>
+
+                <p className="font-sans font-normal text-base text-[#191919]/75 leading-relaxed">
+                  Contoocook Artesian Well Company does more than just drill new wells! We help existing wells keep delivering water to your property. When you find your water pressure is low or you have <strong>NO WATER — call us!</strong> We can help.
+                </p>
+
+                <p className="font-sans font-normal text-base text-[#191919]/75 leading-relaxed">
+                  No water, or low water pressure could be the sign of just a bad or malfunctioning water pump. We can assess the situation and get you the right solution to have your water pumping back to where it belongs in no time — many times with even better water pressure.
+                </p>
+
+                <div className="bg-white border border-[#E2EFF3] p-6 rounded-3xl shadow-xs space-y-3">
+                  <h4 className="font-heading font-bold text-lg text-[#000F26]">
+                    Matching the right pump to your well
+                  </h4>
+                  <p className="font-sans font-normal text-sm text-[#191919]/75 leading-relaxed">
+                    When your well was drilled, a water pump was installed (typically a submersible pump) to meet the water demands of your home. Connected to a pressure tank assembly, it regulates flow steady and predictable into your fixtures.
+                  </p>
+                  <p className="font-sans font-normal text-sm text-[#191919]/75 leading-relaxed">
+                    When pump service arises, our technicians arrive quickly with fully stocked trucks. We carry the top brands and sizes for immediate replacement.
+                  </p>
+                </div>
+
+                <div className="pt-2 flex flex-wrap gap-4">
+                  <a
+                    href={`tel:${siteData.company.phoneClean}`}
+                    className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[#00A8EB] hover:bg-[#1D7FA7] text-white font-heading font-bold text-sm uppercase tracking-wider transition-all transform hover:scale-105 active:scale-95 duration-200"
+                  >
+                    <Phone className="w-4 h-4 fill-white" />
+                    <span>Call 603-428-6060</span>
+                  </a>
+
+                  <Link
+                    to="/no-water-or-pressure"
+                    className="inline-flex items-center gap-2 px-6 py-4 rounded-full border border-[#00A8EB] text-[#00A8EB] hover:bg-[#E2EFF3] font-heading font-bold text-sm uppercase tracking-wider transition-all"
+                  >
+                    <span>Emergency Troubleshooting</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
+                </div>
+              </div>
+
             </div>
-
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5 order-1 lg:order-2">
-              <div className="inline-flex items-center space-x-2 font-sans font-semibold text-xs uppercase tracking-wider text-[#172638] bg-[#E8DFE9] border border-[#D5BBD3] px-3 py-1 rounded">
-                <Phone className="w-3.5 h-3.5 shrink-0 text-[#6E2C6B]" />
-                <span>On Call 7 Days a Week</span>
-              </div>
-
-              <h2 className="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-[#172638] tracking-tight">
-                Pump Services
-              </h2>
-
-              <h3 className="font-serif font-semibold text-lg sm:text-xl text-[#002D55] tracking-tight">
-                Matching the right pump to your well
-              </h3>
-
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                When drilling is complete, we promptly install a submersible pump system that meets the demands of your home for water. The pump is connected to a water tank assembly that regulates the flow of water into your home or business.
-              </p>
-
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                Our pumps maintain proper pressure to keep the flow steady and predictable. When the need for pump service arises, we are at your service 7 days a week. Our service staff will be at your home quickly. We will gladly install the pump you need.
-              </p>
-
-              <div className="pt-3 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#6E2C6B] hover:bg-[#854B82] text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider shadow-sm transition-all space-x-2 text-center"
-                >
-                  <span>Click here for a FREE CONSULTATION</span>
-                  <ArrowRight className="w-4 h-4 text-white shrink-0" />
-                </Link>
-
-                <a
-                  href={`tel:${siteData.company.phoneClean}`}
-                  className="inline-flex items-center justify-center px-5 py-3.5 rounded-xl bg-[#002D55] hover:bg-[#16466F] text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider transition-colors space-x-2 text-center border border-[#16466F]"
-                >
-                  <Phone className="w-4 h-4 fill-white shrink-0" />
-                  <span>Call 603-428-6060</span>
-                </a>
-              </div>
-            </div>
-
-          </div>
+          </ScrollReveal>
         </section>
 
-        <hr className="border-[#D5BBD3]" />
+        <hr className="border-[#E2EFF3]" />
 
         {/* 3. Water Testing & Filtration */}
-        <section id="watertesting" className="scroll-mt-36">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
-              <div className="inline-flex items-center space-x-2 font-sans font-semibold text-xs uppercase tracking-wider text-[#172638] bg-[#E8DFE9] border border-[#D5BBD3] px-3 py-1 rounded">
-                <Droplet className="w-3.5 h-3.5 shrink-0 text-[#6E2C6B]" />
-                <span>Water Quality Solutions</span>
-              </div>
+        <section id="watertesting" className="scroll-mt-32">
+          <ScrollReveal delay={0}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              
+              <div className="lg:col-span-7 space-y-6">
+                <div className="inline-flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider text-[#00A8EB] bg-[#E2EFF3] px-3.5 py-1.5 rounded-full">
+                  <ShieldCheck className="w-3.5 h-3.5" />
+                  <span>Pure, Safe Water</span>
+                </div>
 
-              <h2 className="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-[#172638] tracking-tight">
-                Water Testing & Filtration
-              </h2>
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] text-[#000F26] tracking-tight leading-tight">
+                  Water Testing & Filtration
+                </h2>
 
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                We offer water testing and a variety of water filtration systems to remove undesirable, unhealthy, and unsafe minerals and contaminants from your water.
-              </p>
-
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                Arsenic, radon, extremely high acidity and iron are common problems in New Hampshire drinking water. The only way to be safe is to be sure. Have your water tested yearly. We test the water at your home or with a State of New Hampshire certified lab to identify the contaminants and mineral problems of your particular water source.
-              </p>
-
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                The lab results from your water test will guide us to one of several filtration systems, if needed. All of our systems are custom made for each home, ensuring the perfect fix.
-              </p>
-
-              <div className="bg-[#E8DFE9] p-5 rounded-xl border border-[#D5BBD3]">
-                <h4 className="font-serif font-bold text-[#172638] text-sm sm:text-base tracking-tight mb-2">
-                  Common Water Problems
-                </h4>
-                <p className="font-sans font-semibold text-xs sm:text-sm text-[#172638] leading-relaxed mb-2">
-                  Bad taste or odor? Stains in sinks and toilets, fixtures and clothes? Wondering about arsenic? Radon? Low water pressure?
+                <p className="font-sans font-normal text-base text-[#191919]/75 leading-relaxed">
+                  Drinking water quality in New Hampshire varies widely from town to town and well to well. Naturally occurring minerals, bedrock geology, and local groundwater conditions can cause issues with taste, odor, staining, hardness, or safety concerns such as arsenic, radon, iron, manganese, and low pH (acidic water).
                 </p>
-                <p className="font-sans font-normal text-xs sm:text-sm text-[#172638]/80 leading-relaxed">
-                  A glass of water looks so clear and pure. But often, it's hiding certain contaminants and minerals that affect its taste, odor, health value, or can be corrosive to your home's plumbing and heating systems.
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-[#E2EFF3]/50 border border-[#E2EFF3] p-5 rounded-2xl">
+                    <h5 className="font-heading font-bold text-sm text-[#000F26] mb-1">Common NH Contaminants</h5>
+                    <p className="font-sans text-xs text-[#191919]/70">Arsenic, Radon, Uranium, Iron, Manganese, Hardness, and Low pH.</p>
+                  </div>
+                  <div className="bg-[#E2EFF3]/50 border border-[#E2EFF3] p-5 rounded-2xl">
+                    <h5 className="font-heading font-bold text-sm text-[#000F26] mb-1">Tailored Filtration</h5>
+                    <p className="font-sans text-xs text-[#191919]/70">Water softeners, iron/sulfur filters, whole-house aeration, and reverse osmosis.</p>
+                  </div>
+                </div>
+
+                <p className="font-sans font-normal text-base text-[#191919]/75 leading-relaxed">
+                  We collect certified water samples and send them to state-accredited laboratories. Based on the comprehensive lab report, we design and install custom water filtration solutions tailored specifically to your home's water chemistry.
                 </p>
-              </div>
 
-              <div className="pt-3 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#6E2C6B] hover:bg-[#854B82] text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider shadow-sm transition-all space-x-2 text-center"
-                >
-                  <span>Click here for a WATER TESTING & FILTRATION CONSULTATION</span>
-                  <ArrowRight className="w-4 h-4 text-white shrink-0" />
-                </Link>
-              </div>
-            </div>
-
-            <div className="lg:col-span-5">
-              <div className="rounded-2xl overflow-hidden shadow-md border border-[#D5BBD3] bg-white">
-                <img 
-                  src="/images/water-work.jpg" 
-                  alt="Water testing and filtration services in NH" 
-                  className="w-full h-auto max-w-full object-cover"
-                />
-                <div className="p-3 bg-[#E8DFE9] font-sans font-medium text-[11px] sm:text-xs text-[#172638]/80 border-t border-[#D5BBD3]">
-                  Custom water filtration and testing for New Hampshire homes.
+                <div className="pt-2">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[#AAD651] hover:bg-[#bce468] text-[#191919] font-heading font-bold text-sm uppercase tracking-wider transition-all transform hover:scale-105 active:scale-95 duration-200"
+                  >
+                    <span>Schedule Water Testing</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </div>
-            </div>
 
-          </div>
+              <div className="lg:col-span-5">
+                <div className="rounded-3xl overflow-hidden shadow-xl border border-[#E2EFF3] bg-[#000F26] group">
+                  <img 
+                    src="/images/water-work.jpg" 
+                    alt="Water Testing and Filtration Systems" 
+                    className="w-full h-[340px] sm:h-[400px] object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                  <div className="p-4 bg-white font-sans font-medium text-xs text-[#191919]/70 border-t border-[#E2EFF3]">
+                    Professional water quality diagnostics and filtration installations.
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </ScrollReveal>
         </section>
 
-        <hr className="border-[#D5BBD3]" />
+        <hr className="border-[#E2EFF3]" />
 
-        {/* 4. Hydrofracking Services */}
-        <section id="hydrofracking" className="scroll-mt-36">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-10 items-center">
-            
-            <div className="lg:col-span-5">
-              <div className="bg-[#002D55] text-white rounded-2xl p-6 sm:p-7 border border-[#16466F] space-y-4 shadow-md">
-                <h3 className="font-serif font-bold text-2xl sm:text-3xl text-white tracking-tight">
-                  99% of the time,
-                </h3>
-                <p className="font-sans font-medium text-sm text-[#D5BBD3]">
-                  wells begin producing more water after hydrofracking.
+        {/* 4. Hydrofracturing */}
+        <section id="hydrofracking" className="scroll-mt-32">
+          <ScrollReveal delay={0}>
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+              
+              <div className="lg:col-span-5 order-2 lg:order-1">
+                <div className="bg-gradient-to-br from-[#000F26] to-[#001D47] text-white p-7 sm:p-8 rounded-3xl border border-white/10 shadow-xl space-y-4">
+                  <span className="font-heading font-bold text-xs uppercase tracking-wider text-[#AAD651]">Real Customer Story</span>
+                  <blockquote className="font-heading font-medium text-lg text-[#E2EFF3] leading-relaxed italic">
+                    “It is the greatest feeling in the world to have so much water...I will tell anyone of your hydrofracking service. Thanks again - especially for getting here so soon!”
+                  </blockquote>
+                  <cite className="font-sans font-bold text-sm text-[#A4DEF3] not-italic block">
+                    — J. Pokigo, Goffstown, NH
+                  </cite>
+                </div>
+              </div>
+
+              <div className="lg:col-span-7 order-1 lg:order-2 space-y-6">
+                <div className="inline-flex items-center gap-2 font-heading font-bold text-xs uppercase tracking-wider text-[#00A8EB] bg-[#E2EFF3] px-3.5 py-1.5 rounded-full">
+                  <Sparkles className="w-3.5 h-3.5" />
+                  <span>Increase Well Yield</span>
+                </div>
+
+                <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] text-[#000F26] tracking-tight leading-tight">
+                  Hydrofracturing Services
+                </h2>
+
+                <p className="font-sans font-normal text-base text-[#191919]/75 leading-relaxed">
+                  If your existing artesian well produces low gallons-per-minute (GPM) or you frequently run out of water during high usage, <strong>hydrofracturing</strong> (hydrofracking) can dramatically increase your well yield without the need to drill a brand new well.
                 </p>
 
-                <div className="pt-3 border-t border-[#16466F]">
-                  <blockquote className="font-serif italic font-medium text-sm text-[#C5D6E4]">
-                    "{siteData.testimonials.home.quote}"
-                  </blockquote>
-                  <p className="text-right font-sans font-bold text-xs text-[#D5BBD3] mt-2">
-                    — {siteData.testimonials.home.author}, {siteData.testimonials.home.location}
-                  </p>
+                <p className="font-sans font-normal text-base text-[#191919]/75 leading-relaxed">
+                  Hydrofracking works by sealing off sections of your well bedrock and injecting high-pressure, clean potable water into the surrounding rock fractures. This flushes out blockages, clears sediment, and opens new interconnected water-bearing veins in the bedrock.
+                </p>
+
+                <div className="space-y-2.5 font-sans text-sm sm:text-base text-[#191919]/80">
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#00A8EB] shrink-0 mt-0.5" />
+                    <span>Cost-effective alternative to drilling a completely new well.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#00A8EB] shrink-0 mt-0.5" />
+                    <span>Safe, chemical-free process using only pressurized potable water.</span>
+                  </div>
+                  <div className="flex items-start gap-2.5">
+                    <CheckCircle2 className="w-5 h-5 text-[#AAD651] shrink-0 mt-0.5" />
+                    <span>Proven track record of success across southern and central NH bedrock.</span>
+                  </div>
+                </div>
+
+                <div className="pt-2">
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center gap-2 px-7 py-4 rounded-full bg-[#00A8EB] hover:bg-[#1D7FA7] text-white font-heading font-bold text-sm uppercase tracking-wider transition-all transform hover:scale-105 active:scale-95 duration-200"
+                  >
+                    <span>Request a Hydrofracking Evaluation</span>
+                    <ArrowRight className="w-4 h-4" />
+                  </Link>
                 </div>
               </div>
+
             </div>
-
-            <div className="lg:col-span-7 space-y-4 sm:space-y-5">
-              <div className="inline-flex items-center space-x-2 font-sans font-semibold text-xs uppercase tracking-wider text-[#172638] bg-[#E8DFE9] border border-[#D5BBD3] px-3 py-1 rounded">
-                <Sparkles className="w-3.5 h-3.5 shrink-0 text-[#6E2C6B]" />
-                <span>Well Yield Enhancement</span>
-              </div>
-
-              <h2 className="font-serif font-bold text-2xl sm:text-3xl lg:text-4xl text-[#172638] tracking-tight">
-                Hydrofracking Services
-              </h2>
-
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                99% of the time, wells begin producing more water after hydrofracking.
-              </p>
-
-              <p className="font-sans font-normal text-sm sm:text-base text-[#172638]/80 leading-relaxed">
-                Our hydrofracking services result in wells that begin producing more water 99% of the time. This method is sometimes used to increase the water from a newly drilled well. Hydrofracking is also potentially an alternative to well deepening, when an existing well is diminishing in volume.
-              </p>
-
-              <div className="space-y-3 pt-1">
-                <div className="bg-white p-4 rounded-xl border border-[#D5BBD3]">
-                  <h4 className="font-serif font-bold text-[#172638] text-sm sm:text-base tracking-tight">
-                    Would hydrofracking help my existing well that doesn't produce a lot of water?
-                  </h4>
-                  <p className="font-sans font-normal text-xs sm:text-sm text-[#172638]/80 mt-1 leading-relaxed">
-                    Yes. Hydrofracking is used to cultivate water from new wells and old wells that may be affected by minerals and incrusted rock fractures.
-                  </p>
-                </div>
-
-                <div className="bg-white p-4 rounded-xl border border-[#D5BBD3]">
-                  <h4 className="font-serif font-bold text-[#172638] text-sm sm:text-base tracking-tight">
-                    How will this process benefit me?
-                  </h4>
-                  <p className="font-sans font-normal text-xs sm:text-sm text-[#172638]/80 mt-1 leading-relaxed">
-                    The process almost always increases the volume of water from a well and is less expensive than drilling a new well or deepening and existing well. Hydrofracking is an excellent option for wells that have historically produced more water but are losing capacity.
-                  </p>
-                </div>
-              </div>
-
-              <div className="pt-1">
-                <a 
-                  href="/documents/Well-Development-by-Hydrofracture-NHDES.pdf" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center font-sans font-semibold text-xs sm:text-sm text-[#172638] hover:text-[#6E2C6B] underline break-words"
-                >
-                  <Download className="w-4 h-4 mr-1.5 shrink-0 text-[#6E2C6B]" />
-                  <span>Learn more about Well Development by Hydrofracture from the NH Department of Environmental Services.</span>
-                </a>
-              </div>
-
-              <div className="pt-3 flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center">
-                <Link
-                  to="/contact"
-                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-[#6E2C6B] hover:bg-[#854B82] text-white font-sans font-bold text-xs sm:text-sm uppercase tracking-wider shadow-sm transition-all space-x-2 text-center"
-                >
-                  <span>Click here for a FREE HYDROFRACKING CONSULTATION</span>
-                  <ArrowRight className="w-4 h-4 text-white shrink-0" />
-                </Link>
-              </div>
-            </div>
-
-          </div>
+          </ScrollReveal>
         </section>
 
       </div>
 
-      {/* Consistent Bottom CTA Section on Plum #6E2C6B */}
-      <section className="bg-[#6E2C6B] text-white border-t border-[#854B82] mt-12 sm:mt-16">
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-20 py-10 sm:py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div>
-            <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-[38px] leading-tight text-white m-0 tracking-tight">
-              No water? No problem!
+      {/* 5. Bottom Emergency CTA Banner */}
+      <section className="bg-gradient-to-r from-[#000F26] via-[#001D47] to-[#000F26] text-white border-t border-white/10 py-12 sm:py-16">
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+          <ScrollReveal delay={0}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-[#A4DEF3] mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#AAD651] animate-pulse"></span>
+              <span>On Call 7 Days a Week</span>
+            </div>
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-white tracking-tight">
+              No water? <span className="text-[#00A8EB]">No problem!</span>
             </h2>
-            <p className="font-sans font-semibold text-base sm:text-[19px] text-[#D5BBD3] mt-1">
-              Give us a call at
+            <p className="font-sans font-medium text-base sm:text-lg text-[#E2EFF3]/80 mt-1">
+              Give our emergency technicians a call today
             </p>
-          </div>
+          </ScrollReveal>
 
-          <a 
-            href="tel:6034286060" 
-            className="font-serif font-bold text-3xl sm:text-4xl lg:text-[46px] leading-none text-white hover:text-[#D5BBD3] whitespace-nowrap transition-colors tracking-tight"
-          >
-            603-428-6060
-          </a>
+          <ScrollReveal delay={120}>
+            <a 
+              href={`tel:${siteData.company.phoneClean}`}
+              className="inline-flex items-center gap-3 bg-[#AAD651] hover:bg-[#bce468] text-[#191919] font-heading font-extrabold text-2xl sm:text-3xl px-8 py-4 rounded-full shadow-[0_12px_32px_-8px_rgba(170,214,81,0.5)] transition-all transform hover:scale-105 active:scale-95 duration-200"
+            >
+              <Phone className="w-6 h-6 fill-[#191919] text-[#191919]" />
+              <span>{siteData.company.phone}</span>
+            </a>
+          </ScrollReveal>
         </div>
       </section>
 

@@ -20,7 +20,7 @@ export default function App() {
   return (
     <Router>
       <ScrollToTop />
-      <div className="flex flex-col min-h-screen w-full overflow-x-hidden text-[#172638] selection:bg-[#6E2C6B] selection:text-white bg-[#F8F7F9]">
+      <div className="flex flex-col min-h-screen w-full overflow-x-hidden text-[#000F26] selection:bg-[#00A8EB] selection:text-white bg-white font-sans">
         
         {/* Persistent Responsive Header */}
         <Header onOpenCoupon={() => setCouponOpen(true)} />

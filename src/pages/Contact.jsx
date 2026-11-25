@@ -5,12 +5,14 @@ import {
   MapPin, 
   Clock, 
   Send, 
-  CheckCircle, 
+  CheckCircle2, 
   AlertTriangle, 
   Building,
-  Tag
+  Tag,
+  ArrowRight
 } from 'lucide-react';
 import { siteData } from '../data/siteData';
+import ScrollReveal from '../components/ScrollReveal';
 
 export default function Contact({ onOpenCoupon }) {
   const [formData, setFormData] = useState({
@@ -49,302 +51,289 @@ export default function Contact({ onOpenCoupon }) {
   };
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#F8F7F9] w-full overflow-x-hidden text-[#172638] font-sans">
+    <div className="flex flex-col min-h-screen bg-[#FFFFFF] w-full overflow-x-hidden text-[#191919] font-sans">
       
-      {/* Banner matching reference styling */}
+      {/* 1. Header Banner - HydroLOGICA Deep Navy (#000F26) */}
       <section 
-        className="text-white pt-12 sm:pt-16 pb-12 sm:pb-16 border-b border-[#16466F] relative overflow-hidden"
+        className="text-white pt-16 sm:pt-20 pb-16 sm:pb-20 relative overflow-hidden bg-[#000F26]"
         style={{
-          background: 'radial-gradient(1000px 500px at 85% 0, #16466F 0, transparent 70%), #002D55'
+          background: 'radial-gradient(1000px 500px at 80% 20%, rgba(0, 168, 235, 0.16) 0%, transparent 70%), #000F26'
         }}
       >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center sm:text-left">
-          <span className="font-sans font-semibold text-xs sm:text-sm uppercase tracking-widest text-[#D5BBD3] border-l-[3px] border-[#6E2C6B] pl-3 inline-block mb-3">
-            Contoocook Artesian Well Company
-          </span>
-          <h1 className="font-serif font-bold text-3xl xs:text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
-            CONTACT US
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 text-center sm:text-left relative z-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-[#00A8EB]/40 text-xs font-semibold text-[#A4DEF3] mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#AAD651] animate-pulse"></span>
+            <span>Contoocook Artesian Well Company • Live Dispatch</span>
+          </div>
+
+          <h1 className="font-heading font-extrabold text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight leading-tight">
+            Contact Our <span className="text-[#00A8EB]">Water Team</span>
           </h1>
-          <p className="mt-3 font-sans font-normal text-base sm:text-lg lg:text-xl text-[#C5D6E4] max-w-2xl leading-relaxed">
-            Emergency Water Service for Southern NH • 603-428-6060
+
+          <p className="mt-4 font-sans font-normal text-base sm:text-lg lg:text-xl text-[#E2EFF3]/90 max-w-2xl leading-relaxed">
+            Emergency Water Service for Southern & Central NH • 603-428-6060
           </p>
         </div>
       </section>
 
-      {/* Main Content Area */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 space-y-12 sm:space-y-16">
+      {/* 2. Main Content Area */}
+      <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 py-16 sm:py-24 space-y-16 sm:space-y-20">
         
-        {/* Top Emergency Highlight (Deep Navy #002D55 background with Plum accent) */}
-        <div className="bg-[#002D55] text-white border border-[#16466F] rounded-2xl p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 shadow-md">
-          <div className="space-y-3 text-center md:text-left">
-            <div className="inline-flex items-center space-x-2 text-[#D5BBD3] font-sans font-bold text-xs uppercase tracking-wider bg-[#16466F] px-3.5 py-1.5 rounded-lg border border-[#477397]">
-              <AlertTriangle className="w-4 h-4 shrink-0 text-[#D5BBD3]" />
-              <span>Emergency Water Service for Southern NH</span>
+        {/* Top Emergency Highlight Box */}
+        <ScrollReveal delay={0}>
+          <div className="bg-[#000F26] text-white border border-white/10 rounded-3xl p-8 sm:p-10 flex flex-col lg:flex-row items-center justify-between gap-8 shadow-xl">
+            <div className="space-y-4 text-center lg:text-left max-w-3xl">
+              <div className="inline-flex items-center gap-2 text-[#AAD651] font-heading font-bold text-xs uppercase tracking-wider bg-white/10 px-3.5 py-1.5 rounded-full">
+                <span className="w-2 h-2 rounded-full bg-[#AAD651] animate-pulse"></span>
+                <span>Emergency Water Service for Southern NH</span>
+              </div>
+              <h2 className="font-heading font-extrabold text-2xl sm:text-3xl lg:text-4xl text-white tracking-tight">
+                When you need emergency water service, Contoocook Artesian Well is the first and only number to call.
+              </h2>
+              <p className="font-sans font-normal text-sm sm:text-base text-[#E2EFF3]/80 leading-relaxed">
+                Don't call the plumber if there's no water coming from the faucet and your house is served by a water well. In all likelihood, the issue is the submersible pump system which brings water from the well into the home. Diagnosing pump problems and getting your water running again is our specialty.
+              </p>
             </div>
-            <h2 className="font-serif font-bold text-xl sm:text-2xl lg:text-3xl text-white tracking-tight">
-              When you need emergency water service, Contoocook Artesian Well Company is the first and only number to call.
-            </h2>
-            <p className="font-sans font-normal text-xs sm:text-sm text-[#C5D6E4] max-w-2xl leading-relaxed">
-              Don't call the plumber if there's no water coming from the faucet and your house is served by a water well. In all likelihood, the issue is the submersible pump system which brings water from the well into the home. Diagnosing pump problems and getting your water running again is our specialty.
-            </p>
-            <p className="font-sans font-bold text-sm text-[#D5BBD3]">
-              We're the first and only number to call: 603-428-6060
-            </p>
-          </div>
 
-          <div className="flex flex-col sm:flex-row gap-3 shrink-0 w-full md:w-auto">
-            <a
-              href={`tel:${siteData.company.phoneClean}`}
-              className="inline-flex items-center justify-center px-6 py-3.5 bg-[#6E2C6B] hover:bg-[#854B82] text-white font-sans font-bold text-sm uppercase tracking-wider rounded-xl shadow-sm transition-all space-x-2 text-center"
-            >
-              <Phone className="w-4 h-4 sm:w-5 sm:h-5 fill-white shrink-0" />
-              <span>Call 603-428-6060</span>
-            </a>
-
-            {onOpenCoupon && (
-              <button
-                onClick={onOpenCoupon}
-                className="inline-flex items-center justify-center px-5 py-3.5 bg-[#16466F] hover:bg-[#1f5a8c] text-white border border-[#477397] font-sans font-semibold text-xs sm:text-sm uppercase tracking-wider rounded-xl transition-colors space-x-2 text-center cursor-pointer"
+            <div className="flex flex-col sm:flex-row gap-4 shrink-0 w-full lg:w-auto">
+              <a
+                href={`tel:${siteData.company.phoneClean}`}
+                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-[#AAD651] hover:bg-[#bce468] text-[#191919] font-heading font-bold text-base rounded-full shadow-lg transition-all transform hover:scale-105 active:scale-95 duration-200"
               >
-                <Tag className="w-4 h-4 text-[#D5BBD3] shrink-0" />
-                <span>$50 Off Coupon</span>
-              </button>
-            )}
+                <Phone className="w-5 h-5 fill-[#191919] text-[#191919]" />
+                <span>Call 603-428-6060</span>
+              </a>
+
+              {onOpenCoupon && (
+                <button
+                  onClick={onOpenCoupon}
+                  className="inline-flex items-center justify-center gap-2 px-6 py-4 bg-white/10 hover:bg-white/15 text-white border border-[#00A8EB]/40 font-heading font-bold text-sm rounded-full backdrop-blur-md transition-all cursor-pointer"
+                >
+                  <Tag className="w-4 h-4 text-[#00A8EB]" />
+                  <span>$50 Off Coupon</span>
+                </button>
+              )}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Two-Column: Contact Details & Interactive Message Form */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14">
           
           {/* Left Column: Direct Info Cards */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            <div className="bg-white border border-[#D5BBD3] rounded-2xl p-6 sm:p-7 shadow-xs space-y-6">
-              <h3 className="font-serif font-bold text-2xl text-[#172638] tracking-tight border-b border-[#D5BBD3] pb-3">
+          <ScrollReveal delay={0} className="lg:col-span-5 space-y-6">
+            <div className="bg-white border border-[#E2EFF3] rounded-3xl p-8 shadow-xs space-y-6">
+              <h3 className="font-heading font-extrabold text-2xl text-[#000F26] tracking-tight border-b border-[#E2EFF3] pb-4">
                 Company Contact Details
               </h3>
 
-              <div className="space-y-5 font-sans">
+              <div className="space-y-6 font-sans">
                 {/* Phone */}
-                <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#E8DFE9] flex items-center justify-center shrink-0 mt-0.5 border border-[#D5BBD3]">
-                    <Phone className="w-5 h-5 text-[#6E2C6B]" />
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-[#E2EFF3] text-[#00A8EB] flex items-center justify-center shrink-0 mt-0.5">
+                    <Phone className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-[#172638]/70 tracking-wider block">Call 7 Days a Week</span>
-                    <a href={`tel:${siteData.company.phoneClean}`} className="font-serif font-bold text-xl text-[#172638] hover:text-[#6E2C6B] transition-colors">
+                    <span className="text-xs uppercase font-bold text-[#00A8EB] tracking-wider block mb-1">Call 7 Days a Week</span>
+                    <a href={`tel:${siteData.company.phoneClean}`} className="font-heading font-extrabold text-2xl text-[#000F26] hover:text-[#00A8EB] transition-colors">
                       {siteData.company.phone}
                     </a>
-                    <p className="text-xs text-[#172638]/75 mt-0.5">Technicians on call 7 days a week for out-of-water emergencies.</p>
+                    <p className="text-xs text-[#191919]/70 mt-1">Technicians on call 7 days a week for out-of-water emergencies.</p>
                   </div>
                 </div>
 
                 {/* Email */}
-                <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#E8DFE9] flex items-center justify-center shrink-0 mt-0.5 border border-[#D5BBD3]">
-                    <Mail className="w-5 h-5 text-[#6E2C6B]" />
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-[#E2EFF3] text-[#00A8EB] flex items-center justify-center shrink-0 mt-0.5">
+                    <Mail className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-[#172638]/70 tracking-wider block">Email Inquiries</span>
-                    <a href={`mailto:${siteData.company.email}`} className="font-sans font-semibold text-base text-[#172638] hover:text-[#6E2C6B] transition-colors underline">
+                    <span className="text-xs uppercase font-bold text-[#00A8EB] tracking-wider block mb-1">Email Inquiries</span>
+                    <a href={`mailto:${siteData.company.email}`} className="font-heading font-bold text-base text-[#000F26] hover:text-[#00A8EB] transition-colors underline">
                       {siteData.company.email}
                     </a>
+                    <p className="text-xs text-[#191919]/70 mt-1">Non-emergency questions, estimates, and billing.</p>
                   </div>
                 </div>
 
                 {/* Address */}
-                <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#E8DFE9] flex items-center justify-center shrink-0 mt-0.5 border border-[#D5BBD3]">
-                    <MapPin className="w-5 h-5 text-[#6E2C6B]" />
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-[#E2EFF3] text-[#00A8EB] flex items-center justify-center shrink-0 mt-0.5">
+                    <MapPin className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-[#172638]/70 tracking-wider block">Main Shop & Office</span>
-                    <p className="font-sans font-medium text-sm text-[#172638]">
-                      {siteData.company.address.street}<br />
-                      {siteData.company.address.poBox}<br />
-                      {siteData.company.address.city}, {siteData.company.address.state} {siteData.company.address.zip}
+                    <span className="text-xs uppercase font-bold text-[#00A8EB] tracking-wider block mb-1">Location & Shop</span>
+                    <p className="font-sans font-medium text-sm text-[#000F26] leading-relaxed">
+                      {siteData.company.address.street}, {siteData.company.address.city}, {siteData.company.address.state} {siteData.company.address.zip}
                     </p>
+                    <p className="text-xs text-[#191919]/70 mt-0.5">Mailing Address: {siteData.company.address.poBox}, {siteData.company.address.city}, {siteData.company.address.state}</p>
                   </div>
                 </div>
 
                 {/* Hours */}
-                <div className="flex items-start space-x-3.5">
-                  <div className="w-10 h-10 rounded-xl bg-[#E8DFE9] flex items-center justify-center shrink-0 mt-0.5 border border-[#D5BBD3]">
-                    <Clock className="w-5 h-5 text-[#6E2C6B]" />
+                <div className="flex items-start gap-4">
+                  <div className="w-11 h-11 rounded-2xl bg-[#E2EFF3] text-[#00A8EB] flex items-center justify-center shrink-0 mt-0.5">
+                    <Clock className="w-5 h-5" />
                   </div>
                   <div>
-                    <span className="text-xs uppercase font-bold text-[#172638]/70 tracking-wider block">Hours of Operation</span>
-                    <p className="font-sans font-semibold text-sm text-[#172638]">
-                      7 Days a Week Service
+                    <span className="text-xs uppercase font-bold text-[#00A8EB] tracking-wider block mb-1">Hours of Operation</span>
+                    <p className="font-heading font-bold text-sm text-[#000F26]">
+                      Emergency Service: 7 Days a Week
                     </p>
-                    <p className="text-xs text-[#172638]/75">Regular hours and 24/7 out-of-water emergency response.</p>
+                    <p className="text-xs text-[#191919]/70 mt-0.5">Office: Mon – Fri 8:00 AM – 5:00 PM</p>
                   </div>
                 </div>
-
               </div>
             </div>
+          </ScrollReveal>
 
-            {/* Service Area Card */}
-            <div className="bg-[#E8DFE9] border border-[#D5BBD3] rounded-2xl p-6 shadow-xs">
-              <h4 className="font-serif font-bold text-lg text-[#172638] mb-2 tracking-tight">
-                Service Area
-              </h4>
-              <p className="font-sans font-normal text-xs sm:text-sm text-[#172638]/80 leading-relaxed">
-                Serving southern and central New Hampshire including Concord, Manchester, Henniker, Hopkinton, Hillsboro, Weare, Warner, Bow, Dunbarton, Goffstown, Deering, and surrounding communities.
-              </p>
-            </div>
-
-          </div>
-
-          {/* Right Column: Contact Message Form */}
-          <div className="lg:col-span-7">
-            <div className="bg-white border border-[#D5BBD3] rounded-2xl p-7 sm:p-9 shadow-sm">
-              <h3 className="font-serif font-bold text-2xl sm:text-3xl text-[#172638] mb-2 tracking-tight">
-                Send Us a Message
+          {/* Right Column: Contact & Free Estimate Form */}
+          <ScrollReveal delay={120} className="lg:col-span-7">
+            <div className="bg-white border border-[#E2EFF3] rounded-3xl p-8 sm:p-10 shadow-xs">
+              <h3 className="font-heading font-extrabold text-2xl text-[#000F26] tracking-tight mb-2">
+                Request Service or Free Cost Estimate
               </h3>
-              <p className="font-sans font-normal text-xs sm:text-sm text-[#172638]/80 mb-6">
-                Fill out the form below and one of our groundwater specialists will contact you promptly.
+              <p className="font-sans text-sm text-[#191919]/70 mb-6">
+                Fill out the form below and our team will get back to you promptly.
               </p>
 
               {submitted ? (
-                <div className="bg-[#E8DFE9] border border-[#D5BBD3] rounded-xl p-6 text-center space-y-3 animate-in fade-in">
-                  <CheckCircle className="w-12 h-12 text-[#6E2C6B] mx-auto" />
-                  <h4 className="font-serif font-bold text-xl text-[#172638]">Message Sent Successfully!</h4>
-                  <p className="font-sans font-normal text-sm text-[#172638]/80 max-w-md mx-auto">
-                    Thank you for reaching out. We have received your request and will get back to you shortly. For immediate emergency water service, please call <strong>603-428-6060</strong>.
+                <div className="bg-[#E2EFF3] border border-[#00A8EB] rounded-2xl p-8 text-center space-y-3">
+                  <CheckCircle2 className="w-12 h-12 text-[#AAD651] mx-auto" />
+                  <h4 className="font-heading font-bold text-xl text-[#000F26]">Message Received!</h4>
+                  <p className="font-sans text-sm text-[#191919]/80 max-w-md mx-auto">
+                    Thank you for contacting Contoocook Artesian Well Company. One of our specialists will respond shortly. For immediate emergency service, please call us directly.
                   </p>
-                  <button
-                    onClick={() => {
-                      setSubmitted(false);
-                      setFormData({ name: '', email: '', phone: '', service: 'Emergency No Water', message: '' });
-                    }}
-                    className="inline-block mt-3 px-5 py-2.5 bg-[#002D55] text-white rounded-xl text-xs uppercase tracking-wider font-bold hover:bg-[#16466F] transition-colors"
-                  >
-                    Send Another Message
-                  </button>
+                  <div className="pt-2">
+                    <a
+                      href={`tel:${siteData.company.phoneClean}`}
+                      className="inline-flex items-center gap-2 font-heading font-bold text-[#00A8EB] hover:underline"
+                    >
+                      <Phone className="w-4 h-4" />
+                      <span>{siteData.company.phone}</span>
+                    </a>
+                  </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-4">
+                <form onSubmit={handleSubmit} className="space-y-5">
                   <div>
-                    <label className="block text-xs font-bold text-[#172638] uppercase tracking-wider mb-1">
+                    <label className="block text-xs font-heading font-bold text-[#000F26] uppercase tracking-wider mb-2">
                       Your Name *
                     </label>
                     <input
                       type="text"
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      placeholder="First & Last Name"
-                      className={`w-full px-4 py-3 rounded-xl border bg-[#F8F7F9] text-[#172638] text-sm focus:outline-none focus:ring-2 focus:ring-[#6E2C6B] focus:border-[#6E2C6B] transition-colors ${
-                        errors.name ? 'border-red-500' : 'border-[#D5BBD3]'
-                      }`}
+                      placeholder="John Doe"
+                      className={`w-full px-4 py-3.5 rounded-2xl border ${errors.name ? 'border-red-500' : 'border-[#E2EFF3]'} focus:outline-hidden focus:border-[#00A8EB] font-sans text-sm`}
                     />
-                    {errors.name && <p className="text-red-600 text-xs mt-1">{errors.name}</p>}
+                    {errors.name && <span className="text-xs text-red-500 mt-1 block">{errors.name}</span>}
                   </div>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-bold text-[#172638] uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-heading font-bold text-[#000F26] uppercase tracking-wider mb-2">
                         Email Address *
                       </label>
                       <input
                         type="email"
                         value={formData.email}
                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                        placeholder="name@example.com"
-                        className={`w-full px-4 py-3 rounded-xl border bg-[#F8F7F9] text-[#172638] text-sm focus:outline-none focus:ring-2 focus:ring-[#6E2C6B] focus:border-[#6E2C6B] transition-colors ${
-                          errors.email ? 'border-red-500' : 'border-[#D5BBD3]'
-                        }`}
+                        placeholder="john@example.com"
+                        className={`w-full px-4 py-3.5 rounded-2xl border ${errors.email ? 'border-red-500' : 'border-[#E2EFF3]'} focus:outline-hidden focus:border-[#00A8EB] font-sans text-sm`}
                       />
-                      {errors.email && <p className="text-red-600 text-xs mt-1">{errors.email}</p>}
+                      {errors.email && <span className="text-xs text-red-500 mt-1 block">{errors.email}</span>}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-bold text-[#172638] uppercase tracking-wider mb-1">
+                      <label className="block text-xs font-heading font-bold text-[#000F26] uppercase tracking-wider mb-2">
                         Phone Number *
                       </label>
                       <input
                         type="tel"
                         value={formData.phone}
                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                        placeholder="603-xxx-xxxx"
-                        className={`w-full px-4 py-3 rounded-xl border bg-[#F8F7F9] text-[#172638] text-sm focus:outline-none focus:ring-2 focus:ring-[#6E2C6B] focus:border-[#6E2C6B] transition-colors ${
-                          errors.phone ? 'border-red-500' : 'border-[#D5BBD3]'
-                        }`}
+                        placeholder="603-555-0123"
+                        className={`w-full px-4 py-3.5 rounded-2xl border ${errors.phone ? 'border-red-500' : 'border-[#E2EFF3]'} focus:outline-hidden focus:border-[#00A8EB] font-sans text-sm`}
                       />
-                      {errors.phone && <p className="text-red-600 text-xs mt-1">{errors.phone}</p>}
+                      {errors.phone && <span className="text-xs text-red-500 mt-1 block">{errors.phone}</span>}
                     </div>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#172638] uppercase tracking-wider mb-1">
-                      Service Requested
+                    <label className="block text-xs font-heading font-bold text-[#000F26] uppercase tracking-wider mb-2">
+                      Service Needed
                     </label>
                     <select
                       value={formData.service}
                       onChange={(e) => setFormData({ ...formData, service: e.target.value })}
-                      className="w-full px-4 py-3 rounded-xl border border-[#D5BBD3] bg-[#F8F7F9] text-[#172638] text-sm focus:outline-none focus:ring-2 focus:ring-[#6E2C6B] focus:border-[#6E2C6B] transition-colors"
+                      className="w-full px-4 py-3.5 rounded-2xl border border-[#E2EFF3] focus:outline-hidden focus:border-[#00A8EB] font-sans text-sm bg-white"
                     >
-                      <option value="Emergency No Water">Emergency No Water Service</option>
-                      <option value="Low Water Pressure">Low Water Pressure Issue</option>
-                      <option value="Well Drilling">New Artesian Well Drilling</option>
-                      <option value="Pump Replacement">Pump Replacement / Tank Service</option>
-                      <option value="Water Testing">Water Testing & Filtration</option>
-                      <option value="Hydrofracking">Hydrofracking Yield Improvement</option>
-                      <option value="General Question">General Inquiry / Other</option>
+                      <option value="Emergency No Water">Emergency No Water</option>
+                      <option value="Low Water Pressure">Low Water Pressure</option>
+                      <option value="New Well Drilling">New Well Drilling</option>
+                      <option value="Pump Replacement">Pump Replacement</option>
+                      <option value="Water Testing & Filtration">Water Testing & Filtration</option>
+                      <option value="Hydrofracking">Hydrofracking</option>
+                      <option value="Other">Other</option>
                     </select>
                   </div>
 
                   <div>
-                    <label className="block text-xs font-bold text-[#172638] uppercase tracking-wider mb-1">
-                      Message / Description of Issue *
+                    <label className="block text-xs font-heading font-bold text-[#000F26] uppercase tracking-wider mb-2">
+                      Message / Issue Details *
                     </label>
                     <textarea
                       rows={4}
                       value={formData.message}
                       onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                       placeholder="Please describe your well, pump, or water issue..."
-                      className={`w-full px-4 py-3 rounded-xl border bg-[#F8F7F9] text-[#172638] text-sm focus:outline-none focus:ring-2 focus:ring-[#6E2C6B] focus:border-[#6E2C6B] transition-colors ${
-                        errors.message ? 'border-red-500' : 'border-[#D5BBD3]'
-                      }`}
-                    ></textarea>
-                    {errors.message && <p className="text-red-600 text-xs mt-1">{errors.message}</p>}
+                      className={`w-full px-4 py-3.5 rounded-2xl border ${errors.message ? 'border-red-500' : 'border-[#E2EFF3]'} focus:outline-hidden focus:border-[#00A8EB] font-sans text-sm`}
+                    />
+                    {errors.message && <span className="text-xs text-red-500 mt-1 block">{errors.message}</span>}
                   </div>
 
                   <button
                     type="submit"
-                    className="w-full inline-flex items-center justify-center space-x-2 px-6 py-4 rounded-xl bg-[#6E2C6B] hover:bg-[#854B82] text-white font-sans font-bold text-sm uppercase tracking-wider shadow-sm transition-all cursor-pointer"
+                    className="w-full inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#AAD651] hover:bg-[#bce468] text-[#191919] font-heading font-bold text-base rounded-full shadow-md transition-all transform hover:scale-[1.02] active:scale-95 duration-200 cursor-pointer"
                   >
-                    <Send className="w-4 h-4 text-white" />
-                    <span>Send Inquiry</span>
+                    <Send className="w-4 h-4 text-[#191919]" />
+                    <span>Send Request for Estimate</span>
                   </button>
                 </form>
               )}
-
             </div>
-          </div>
+          </ScrollReveal>
 
         </div>
 
       </div>
 
-      {/* Consistent Bottom CTA Section on Plum #6E2C6B */}
-      <section className="bg-[#6E2C6B] text-white border-t border-[#854B82] mt-12 sm:mt-16">
-        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-20 py-10 sm:py-12 flex flex-col md:flex-row items-center justify-between gap-6 text-center md:text-left">
-          <div>
-            <h2 className="font-serif font-bold text-3xl sm:text-4xl lg:text-[38px] leading-tight text-white m-0 tracking-tight">
-              No water? No problem!
+      {/* 3. Emergency Bottom Banner */}
+      <section className="bg-gradient-to-r from-[#000F26] via-[#001D47] to-[#000F26] text-white border-t border-white/10 py-12 sm:py-16">
+        <div className="max-w-[1440px] mx-auto px-5 sm:px-10 lg:px-16 xl:px-24 flex flex-col md:flex-row items-center justify-between gap-8 text-center md:text-left">
+          <ScrollReveal delay={0}>
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-xs font-semibold text-[#A4DEF3] mb-3">
+              <span className="w-2 h-2 rounded-full bg-[#AAD651] animate-pulse"></span>
+              <span>Available 7 Days a Week</span>
+            </div>
+            <h2 className="font-heading font-extrabold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-white tracking-tight">
+              No water? <span className="text-[#00A8EB]">No problem!</span>
             </h2>
-            <p className="font-sans font-semibold text-base sm:text-[19px] text-[#D5BBD3] mt-1">
-              Give us a call at
+            <p className="font-sans font-medium text-base sm:text-lg text-[#E2EFF3]/80 mt-1">
+              Give our emergency technicians a call today
             </p>
-          </div>
+          </ScrollReveal>
 
-          <a 
-            href="tel:6034286060" 
-            className="font-serif font-bold text-3xl sm:text-4xl lg:text-[46px] leading-none text-white hover:text-[#D5BBD3] whitespace-nowrap transition-colors tracking-tight"
-          >
-            603-428-6060
-          </a>
+          <ScrollReveal delay={120}>
+            <a 
+              href={`tel:${siteData.company.phoneClean}`}
+              className="inline-flex items-center gap-3 bg-[#AAD651] hover:bg-[#bce468] text-[#191919] font-heading font-extrabold text-2xl sm:text-3xl px-8 py-4 rounded-full shadow-[0_12px_32px_-8px_rgba(170,214,81,0.5)] transition-all transform hover:scale-105 active:scale-95 duration-200"
+            >
+              <Phone className="w-6 h-6 fill-[#191919] text-[#191919]" />
+              <span>{siteData.company.phone}</span>
+            </a>
+          </ScrollReveal>
         </div>
       </section>
 

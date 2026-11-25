@@ -4,46 +4,41 @@
 
 @layer base {
   :root {
-    /* Option 1: Elegant & Premium Plum + Navy Palette */
-    --deep-navy: #002D55;
-    --plum: #6E2C6B;
-    --soft-plum: #854B82;
-    --muted-mauve: #A875A5;
-    --light-lavender: #D5BBD3;
-    --classic-blue: #16466F;
-    --muted-blue: #477397;
-    --powder-blue: #C5D6E4;
-    --soft-lavender-white: #E8DFE9;
-    --off-white: #F8F7F9;
+    /* HydroLOGICA Design System Color Tokens */
+    --navy: #000F26;
+    --bright-agua: #00A8EB;
+    --agua: #1D7FA7;
+    --pacific: #61AFCD;
+    --light-agua: #A4DEF3;
+    --mist: #E2EFF3;
+    --lime: #AAD651;
+    --black: #191919;
     --white: #FFFFFF;
-    --dark-text: #172638;
+    --platinum: #EBEBEB;
+    --light-grey: #D7D7D7;
+    --grey: #6D6D6D;
+    --silver: #A2A2A2;
+    --error: #DA6D58;
 
-    /* Theme Role Mappings */
-    --ink: #002D55;
-    --spruce: #16466F;
-    --spruce2: #16466F;
-    --mist: #E8DFE9;
-    --amber: #6E2C6B;
-    --amber-ink: #FFFFFF;
-    --stone: #477397;
-    --line: #D5BBD3;
-    --text: #172638;
-    --bg: #F8F7F9;
+    /* Semantic Theme Mappings */
+    --bg: #FFFFFF;
+    --text: #000F26;
     --card: #FFFFFF;
+    --card-tint: #E2EFF3;
+    --border: #E2EFF3;
+    --primary: #000F26;
+    --accent: #00A8EB;
+    --cta-bg: #AAD651;
+    --cta-text: #191919;
 
-    /* Primary Font: 'Fraunces', Georgia, serif */
-    --font-fraunces: 'Fraunces', Georgia, serif;
-    --serif: 'Fraunces', Georgia, serif;
-    --sans: 'Fraunces', Georgia, serif;
-  }
-
-  *, *::before, *::after {
-    font-family: 'Fraunces', Georgia, serif;
+    /* Typography */
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Poppins', 'Inter', -apple-system, sans-serif;
   }
 
   html {
     scroll-behavior: smooth;
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: var(--font-body);
     background-color: var(--bg);
     color: var(--text);
     overflow-x: hidden;
@@ -57,22 +52,33 @@
     padding: 0;
     color: var(--text);
     background-color: var(--bg);
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: var(--font-body);
     font-weight: 400;
-    line-height: 1.6;
+    line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     -webkit-tap-highlight-color: transparent;
   }
 
   h1, h2, h3, h4, h5, h6 {
-    font-family: 'Fraunces', Georgia, serif;
-    letter-spacing: -0.015em;
+    font-family: var(--font-heading);
+    letter-spacing: -0.02em;
     color: var(--text);
+    font-weight: 700;
   }
 
   p, span, a, button, input, select, textarea, label {
-    font-family: 'Fraunces', Georgia, serif;
+    font-family: var(--font-body);
+  }
+}
+
+/* Accessibility: Respect user's motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ForWater | Finalized Hybrid Revamp Preview (Heritage + Emergency)</title>
+  
+  <!-- Google Fonts: Fraunces & Inter for UI controls -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            deepNavy: '#002D55',
+            plum: '#6E2C6B',
+            softPlum: '#854B82',
+            mutedMauve: '#A875A5',
+            lightLavender: '#D5BBD3',
+            classicBlue: '#16466F',
+            mutedBlue: '#477397',
+            powderBlue: '#C5D6E4',
+            softLavenderWhite: '#E8DFE9',
+            offWhite: '#F8F7F9',
+            darkText: '#172638',
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'Georgia', 'serif'],
+            sans: ['Fraunces', 'Georgia', 'serif'],
+            ui: ['Inter', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      font-family: 'Fraunces', Georgia, serif;
+      background-color: #07101B;
+      color: #E2E8F0;
+    }
+    .ui-font {
+      font-family: 'Inter', system-ui, sans-serif;
+    }
+    
+    /* Device frames */
+    .device-desktop {
+      width: 100%;
+      max-width: 1440px;
+      margin: 0 auto;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .device-tablet {
+      max-width: 768px;
+      margin: 0 auto;
+      border: 12px solid #1A2839;
+      border-radius: 36px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .device-mobile {
+      max-width: 390px;
+      margin: 0 auto;
+      border: 10px solid #1A2839;
+      border-radius: 42px;
+      overflow: hidden;
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 1; }
+      50% { transform: scale(1.2); opacity: 0.6; }
+    }
+    .pulse-glow {
+      animation: pulseGlow 2s infinite ease-in-out;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col antialiased selection:bg-[#6E2C6B] selection:text-white">
+
+  <!-- TOP APP NAVIGATION & VIEWPORT CONTROLS -->
+  <header class="sticky top-0 z-50 bg-[#001D38] border-b border-[#16466F] shadow-2xl backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex flex-wrap items-center justify-between gap-4">
+      
+      <!-- Title & Status -->
+      <div class="flex items-center gap-3">
+        <div class="w-10 h-10 rounded-xl bg-[#6E2C6B] text-white flex items-center justify-center font-bold text-lg shadow-md border border-[#D5BBD3]/30">
+          FW
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-base sm:text-lg text-white tracking-tight">Finalized Hybrid Design Preview</span>
+            <span class="ui-font text-[11px] font-bold bg-[#6E2C6B] text-white px-2.5 py-0.5 rounded-full border border-[#D5BBD3]/40">
+              Concept 1 + Concept 2
+            </span>
+          </div>
+          <p class="ui-font text-xs text-[#C5D6E4]">Heritage Craftsman Elegance + Accessible Emergency Utility (Phase 1: Homepage)</p>
+        </div>
+      </div>
+
+      <!-- View Selector (Preview vs Side-by-Side Comparison) -->
+      <div class="flex items-center gap-2 bg-[#002D55] p-1 rounded-xl border border-[#16466F] ui-font text-xs font-semibold">
+        <button onclick="setViewMode('preview')" id="btn-mode-preview" class="mode-btn px-3 py-1.5 rounded-lg bg-[#6E2C6B] text-white transition-all shadow-xs">
+          Interactive Live Preview
+        </button>
+        <button onclick="setViewMode('audit')" id="btn-mode-audit" class="mode-btn px-3 py-1.5 rounded-lg text-[#C5D6E4] hover:text-white transition-all">
+          Before vs. After Comparison
+        </button>
+      </div>
+
+      <!-- Viewport Device Switcher -->
+      <div class="flex items-center gap-1.5 bg-[#002D55] p-1 rounded-xl border border-[#16466F] ui-font text-xs">
+        <button onclick="setDevice('desktop')" id="btn-desktop" class="device-btn px-3 py-1.5 rounded-lg bg-[#16466F] text-white flex items-center gap-1.5 font-medium" title="Desktop 1440px">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8m-4-4v4"/></svg>
+          <span class="hidden sm:inline">Desktop (1440px)</span>
+        </button>
+        <button onclick="setDevice('tablet')" id="btn-tablet" class="device-btn px-3 py-1.5 rounded-lg text-[#C5D6E4] hover:text-white flex items-center gap-1.5 font-medium" title="Tablet 768px">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="4" y="2" width="16" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span class="hidden sm:inline">Tablet (768px)</span>
+        </button>
+        <button onclick="setDevice('mobile')" id="btn-mobile" class="device-btn px-3 py-1.5 rounded-lg text-[#C5D6E4] hover:text-white flex items-center gap-1.5 font-medium" title="Mobile 390px">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect x="7" y="2" width="10" height="20" rx="2"/><line x1="12" y1="18" x2="12.01" y2="18"/></svg>
+          <span class="hidden sm:inline">Mobile (390px)</span>
+        </button>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- PROTOTYPE CANVAS -->
+  <main class="grow p-3 sm:p-6 lg:p-8 flex flex-col items-center justify-start bg-[#050D17]">
+    
+    <!-- 1. LIVE PREVIEW MODE -->
+    <div id="section-preview" class="w-full">
+      <div id="canvas-wrapper" class="device-desktop bg-[#F8F7F9] text-[#172638] rounded-2xl shadow-2xl overflow-hidden border border-[#16466F]/60 transition-all duration-300">
+        
+        <!-- HEADER COMPONENT -->
+        <header class="bg-[#002D55] text-white border-b border-[#16466F] relative z-40">
+          
+          <!-- Top Announcement & Emergency Status Bar in Plum #6E2C6B -->
+          <div class="bg-[#6E2C6B] text-white text-xs sm:text-sm font-semibold py-2 px-4 tracking-wide shadow-xs border-b border-[#854B82]/40">
+            <div class="max-w-7xl mx-auto flex flex-wrap items-center justify-between gap-2">
+              <div class="flex items-center gap-2">
+                <span class="w-2 h-2 rounded-full bg-[#D5BBD3] pulse-glow"></span>
+                <span>Serving Southern & Central New Hampshire Since 1936 • State of NH Water Well License #1</span>
+              </div>
+              <div class="hidden sm:flex items-center gap-3 ui-font text-[12px]">
+                <span class="text-[#D5BBD3]">7 Days a Week Live Dispatch:</span>
+                <a href="tel:6034286060" class="font-bold underline hover:text-[#D5BBD3] tracking-wider">603-428-6060</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Main Nav -->
+          <div class="max-w-7xl mx-auto px-4 sm:px-8 py-3.5 flex items-center justify-between gap-4">
+            
+            <!-- Logo: Clean, transparent, enlarged, no colored background box -->
+            <div class="flex items-center gap-3">
+              <img 
+                src="/logos/logo.png" 
+                alt="Contoocook Artesian Well Co. logo" 
+                class="h-10 sm:h-11 md:h-12 w-auto object-contain transition-transform duration-200 hover:scale-105"
+                onerror="this.src='../public/logos/logo.png'"
+              />
+              <div class="hidden xs:block">
+                <span class="font-bold text-lg sm:text-xl text-white block leading-tight tracking-tight">Contoocook Artesian Well</span>
+                <span class="ui-font text-[11px] text-[#D5BBD3] uppercase tracking-widest font-semibold block">Water Well License #1</span>
+              </div>
+            </div>
+
+            <!-- Desktop Links -->
+            <nav class="hidden lg:flex items-center gap-6 text-[15px] font-medium text-[#D5BBD3]">
+              <span class="text-white font-bold border-b-2 border-[#A875A5] pb-1 cursor-pointer">Home</span>
+              <span class="hover:text-white cursor-pointer transition-colors">Services ▾</span>
+              <span class="hover:text-white cursor-pointer transition-colors">No Water or Pressure?</span>
+              <span class="hover:text-white cursor-pointer transition-colors">Our History</span>
+              <span class="hover:text-white cursor-pointer transition-colors">Resources</span>
+              <span class="hover:text-white cursor-pointer transition-colors">Contact</span>
+            </nav>
+
+            <!-- Call CTA -->
+            <div class="flex items-center gap-3">
+              <a 
+                href="tel:6034286060" 
+                class="px-5 py-2.5 rounded-xl bg-[#6E2C6B] hover:bg-[#854B82] text-white font-bold text-sm shadow-md transition-all active:scale-95 flex items-center gap-2"
+              >
+                <span class="hidden sm:inline">24/7 Service:</span>
+                <span>603-428-6060</span>
+              </a>
+            </div>
+
+          </div>
+        </header>
+
+        <!-- ======================================================== -->
+        <!-- FINALIZED HYBRID HERO: HERITAGE AUTHORITY + CLEAR ACTION -->
+        <!-- ======================================================== -->
+        <section 
+          class="relative text-white pt-12 sm:pt-16 pb-20 sm:pb-28 px-5 sm:px-10 lg:px-16 overflow-hidden"
+          style="background: radial-gradient(1100px 550px at 85% 0, #16466F 0%, transparent 70%), #002D55;"
+        >
+          <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
+            
+            <!-- Left Column: Heritage Storytelling with High-Contrast Action -->
+            <div class="lg:col-span-7 space-y-6">
+              
+              <!-- Heritage Pre-Header Badge -->
+              <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#16466F] border border-[#477397] text-xs font-semibold text-[#D5BBD3] ui-font shadow-xs">
+                <span class="w-2 h-2 rounded-full bg-[#6E2C6B]"></span>
+                <span>State of New Hampshire Water Well License #1 • Founded 1936</span>
+              </div>
+
+              <!-- Main Hero Headline in Fraunces Bold -->
+              <h1 class="text-4xl sm:text-5xl lg:text-6xl xl:text-[68px] font-bold leading-[1.05] tracking-[-0.015em] text-[#F8F7F9]">
+                No water? <br><span class="italic font-serif text-[#D5BBD3]">No problem!</span>
+              </h1>
+
+              <!-- Subheading preserving authentic company promise -->
+              <p class="text-lg sm:text-[21px] text-[#C5D6E4] max-w-xl leading-relaxed font-normal">
+                Our technicians are on call 7 days a week for prompt well pump service. Generations of Patenaudes have drilled New Hampshire wells and restored home water systems with pride.
+              </p>
+
+              <!-- Unified Dual Action Button Row -->
+              <div class="pt-2 flex flex-wrap items-center gap-4">
+                
+                <!-- Primary Emergency Dial Button in Plum #6E2C6B -->
+                <a 
+                  href="tel:6034286060" 
+                  class="inline-flex items-center gap-3.5 bg-[#6E2C6B] hover:bg-[#854B82] text-white font-bold rounded-2xl py-3.5 px-6 shadow-xl transition-all transform hover:-translate-y-0.5 active:scale-95"
+                >
+                  <span class="w-10 h-10 rounded-xl bg-[#002D55] text-white flex items-center justify-center shrink-0 border border-[#D5BBD3]/30">
+                    <svg class="w-5 h-5 fill-white" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  </span>
+                  <div class="text-left">
+                    <span class="ui-font text-[11px] uppercase tracking-wider text-[#E8DFE9] block leading-tight font-semibold">Immediate Dispatch</span>
+                    <span class="text-2xl font-serif font-bold text-white block leading-tight">603-428-6060</span>
+                  </div>
+                </a>
+
+                <!-- Secondary Consultation / Estimate Button -->
+                <a 
+                  href="#contact" 
+                  class="inline-flex items-center px-6 py-4 rounded-2xl bg-white/10 hover:bg-white/15 border border-[#D5BBD3]/50 text-white font-bold text-sm sm:text-base backdrop-blur-xs transition-all hover:-translate-y-0.5"
+                >
+                  <span>Free Cost Estimate</span>
+                  <span class="ml-2 font-serif text-lg">→</span>
+                </a>
+
+              </div>
+
+              <!-- Heritage Pillars Bar: 3 Verified Facts -->
+              <div class="pt-6 border-t border-[#16466F] grid grid-cols-3 gap-4 text-left max-w-lg">
+                <div>
+                  <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">NH #1</div>
+                  <div class="ui-font text-[11px] text-[#C5D6E4] mt-0.5">Water Well License</div>
+                </div>
+                <div>
+                  <div class="text-2xl sm:text-3xl font-bold text-[#D5BBD3] tracking-tight">1936</div>
+                  <div class="ui-font text-[11px] text-[#C5D6E4] mt-0.5">Founded in NH</div>
+                </div>
+                <div>
+                  <div class="text-2xl sm:text-3xl font-bold text-white tracking-tight">7 Days</div>
+                  <div class="ui-font text-[11px] text-[#C5D6E4] mt-0.5">Live Pump Service</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Column: Authentic Equipment Photography Framed in Archival Border -->
+            <div class="lg:col-span-5 relative">
+              <div class="relative rounded-2xl overflow-hidden shadow-2xl border-2 border-[#16466F] bg-[#002D55]">
+                
+                <img 
+                  src="/images/drilling-rig.jpg" 
+                  alt="Contoocook Artesian Well Drilling Rig on site in New Hampshire" 
+                  class="w-full h-[360px] sm:h-[440px] object-cover"
+                  onerror="this.src='../public/images/drilling-rig.jpg'"
+                />
+                
+                <!-- Inner Archival Border -->
+                <div class="absolute inset-3 border border-dashed border-[#D5BBD3]/40 rounded-xl pointer-events-none"></div>
+
+                <!-- Emergency On-Call Floating Badge -->
+                <div class="absolute top-4 right-4 bg-white/95 backdrop-blur-md text-[#172638] rounded-xl p-3 shadow-xl border border-[#D5BBD3] max-w-[210px] text-left">
+                  <div class="flex items-center gap-1.5 text-[#6E2C6B] text-xs font-bold ui-font mb-1">
+                    <span class="w-2 h-2 rounded-full bg-[#6E2C6B] pulse-glow"></span>
+                    <span>Technicians On Duty</span>
+                  </div>
+                  <p class="text-xs font-bold leading-tight text-[#002D55]">7 days a week. Call us when your pump needs service.</p>
+                </div>
+
+                <!-- Bottom Photo Caption Plate -->
+                <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-[#002D55] via-[#002D55]/90 to-transparent p-4 pt-8 text-xs text-[#D5BBD3] ui-font flex justify-between items-end">
+                  <span>Rotary Drilling Rig on Location • Central NH</span>
+                  <span class="font-bold text-white">Henniker, NH</span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- THREE-CARD TRIPTYCH SECTION IMMEDIATELY BELOW THE HERO  -->
+        <!-- ======================================================== -->
+        <section class="-mt-10 sm:-mt-14 relative z-30 px-5 sm:px-10 lg:px-16" id="help">
+          <div class="max-w-7xl mx-auto">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+              
+              <!-- Card 1: Diagnostic Self-Help (White Surface with Lavender Border) -->
+              <div class="lg:col-span-5 bg-white border border-[#D5BBD3] rounded-2xl p-6 sm:p-8 shadow-[0_22px_50px_-30px_rgba(0,45,85,0.3)] flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-25px_rgba(0,45,85,0.35)] transition-all duration-300 ease-out">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="ui-font text-[11px] font-bold text-[#6E2C6B] bg-[#E8DFE9] px-3 py-1 rounded-full uppercase tracking-wider">
+                      Troubleshooting Guides
+                    </span>
+                    <span class="ui-font text-xs text-[#477397]">Free PDFs</span>
+                  </div>
+
+                  <h3 class="font-serif font-bold text-2xl sm:text-[28px] text-[#002D55] mb-2 tracking-tight">
+                    Need help?
+                  </h3>
+                  
+                  <p class="font-sans font-normal text-sm sm:text-base text-[#477397] mb-5 leading-relaxed">
+                    Before calling us, check out our handy troubleshooting and information guides:
+                  </p>
+
+                  <ul class="divide-y divide-[#D5BBD3] m-0 p-0 list-none font-sans">
+                    <li>
+                      <a 
+                        href="/documents/Low-or-No-Water-Pressure.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="flex items-center justify-between gap-3 py-2.5 text-[15px] sm:text-[16px] font-semibold text-[#172638] hover:text-[#6E2C6B] transition-colors group"
+                      >
+                        <span>Low or no water pressure?</span>
+                        <span class="text-[#6E2C6B] font-bold text-base transition-transform group-hover:translate-x-0.5">↗</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="/documents/Is-Your-Submersible-Pump-Healthy.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="flex items-center justify-between gap-3 py-2.5 text-[15px] sm:text-[16px] font-semibold text-[#172638] hover:text-[#6E2C6B] transition-colors group"
+                      >
+                        <span>Is your submersible pump healthy?</span>
+                        <span class="text-[#6E2C6B] font-bold text-base transition-transform group-hover:translate-x-0.5">↗</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="/documents/Artesian-or-Dug-Well-Difference.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="flex items-center justify-between gap-3 py-2.5 text-[15px] sm:text-[16px] font-semibold text-[#172638] hover:text-[#6E2C6B] transition-colors group"
+                      >
+                        <span>Artesian or dug well? What is the difference?</span>
+                        <span class="text-[#6E2C6B] font-bold text-base transition-transform group-hover:translate-x-0.5">↗</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a 
+                        href="/documents/Getting-Your-Drill-Site-Ready.pdf" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        class="flex items-center justify-between gap-3 py-2.5 text-[15px] sm:text-[16px] font-semibold text-[#172638] hover:text-[#6E2C6B] transition-colors group"
+                      >
+                        <span>Getting Your Drill Site Ready</span>
+                        <span class="text-[#6E2C6B] font-bold text-base transition-transform group-hover:translate-x-0.5">↗</span>
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <!-- Card 2: Promotional Savings (Plum #6E2C6B Surface) -->
+              <div class="lg:col-span-3 xl:col-span-4 bg-[#6E2C6B] border border-[#6E2C6B] text-white rounded-2xl p-6 sm:p-8 shadow-[0_22px_50px_-30px_rgba(110,44,107,0.4)] flex flex-col justify-between hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-25px_rgba(110,44,107,0.5)] transition-all duration-300 ease-out">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="ui-font text-[11px] font-bold bg-[#002D55] text-white px-3 py-1 rounded-full uppercase tracking-wider border border-[#D5BBD3]/30">
+                      Savings Voucher
+                    </span>
+                    <span class="ui-font text-xs text-[#E8DFE9]">Instant Redeem</span>
+                  </div>
+
+                  <h3 class="font-serif font-bold text-3xl sm:text-[32px] text-white mb-2 tracking-tight">
+                    $50 off!
+                  </h3>
+                  
+                  <p class="font-sans font-normal text-sm sm:text-base text-[#E8DFE9] mb-5 leading-relaxed">
+                    Get $50 off the cost of a well pump, well tank or pump and tank system. Click below to claim and print your coupon.
+                  </p>
+                </div>
+
+                <div>
+                  <button 
+                    class="w-full inline-block font-sans font-bold rounded-xl px-6 py-3.5 text-sm sm:text-base bg-[#002D55] hover:bg-[#16466F] text-white transition-all shadow-md text-center cursor-pointer border border-[#16466F] active:scale-95"
+                  >
+                    $50 Off Coupon
+                  </button>
+                </div>
+              </div>
+
+              <!-- Card 3: 7 Days / Week Live Service (Deep Navy #002D55 Surface) -->
+              <div class="lg:col-span-4 xl:col-span-3 bg-[#002D55] border border-[#16466F] rounded-2xl p-6 sm:p-8 shadow-[0_22px_50px_-30px_rgba(0,45,85,0.4)] flex flex-col justify-between text-white hover:-translate-y-1.5 hover:shadow-[0_28px_60px_-25px_rgba(0,45,85,0.5)] transition-all duration-300 ease-out">
+                <div>
+                  <div class="flex items-center justify-between mb-3">
+                    <span class="ui-font text-[11px] font-bold bg-[#16466F] text-[#D5BBD3] px-3 py-1 rounded-full uppercase tracking-wider border border-[#477397]">
+                      Emergency Response
+                    </span>
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 pulse-glow"></span>
+                  </div>
+
+                  <h3 class="font-serif font-bold text-2xl sm:text-[28px] text-white mb-2 tracking-tight">
+                    7 days a week
+                  </h3>
+                  
+                  <p class="font-sans font-normal text-sm sm:text-base text-[#D5BBD3] mb-5 leading-relaxed">
+                    Our service techs are on call 7 days a week. You'll find a real person on the line when you need service.
+                  </p>
+                </div>
+
+                <div class="pt-2 border-t border-[#16466F]">
+                  <p class="font-sans font-medium text-xs sm:text-sm text-[#D5BBD3] mb-1 ui-font uppercase tracking-wider">
+                    Call 24/7 Hotline
+                  </p>
+                  <a 
+                    href="tel:6034286060" 
+                    class="font-serif font-bold text-3xl sm:text-[34px] text-white hover:text-[#D5BBD3] transition-colors block tracking-tight leading-tight"
+                  >
+                    603-428-6060
+                  </a>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </section>
+
+        <!-- REST OF HOMEPAGE PREVIEW (Call us first, 4 services, testimonials) -->
+        <section class="pt-20 pb-16 px-5 sm:px-10 lg:px-16 bg-[#F8F7F9]">
+          <div class="max-w-7xl mx-auto space-y-16">
+            
+            <!-- Call us first section -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center">
+              <div>
+                <span class="ui-font text-xs font-bold text-[#6E2C6B] uppercase tracking-wider block mb-2">Groundwater Specialists</span>
+                <h2 class="font-serif font-bold text-3xl sm:text-4xl lg:text-[42px] leading-tight text-[#002D55] mb-4 tracking-tight">
+                  Call us first!
+                </h2>
+                <p class="text-base sm:text-lg text-[#477397] mb-6 leading-relaxed">
+                  Your search for a water pump replacement, water well drilling and water filtration company you can trust ends here.
+                </p>
+                <div class="bg-white p-5 rounded-2xl border border-[#D5BBD3] space-y-3">
+                  <div class="font-semibold text-base text-[#172638] flex items-center gap-2">
+                    <span class="text-[#6E2C6B] font-bold">Q:</span> What do you do if your faucet has no water?
+                  </div>
+                  <div class="font-semibold text-base text-[#172638] flex items-center gap-2">
+                    <span class="text-[#6E2C6B] font-bold">Q:</span> Why do I suddenly have no water?
+                  </div>
+                  <div class="font-semibold text-base text-[#172638] flex items-center gap-2">
+                    <span class="text-[#6E2C6B] font-bold">Q:</span> Why is my water pressure so low?
+                  </div>
+                  <div class="pt-2 text-sm font-bold text-[#6E2C6B]">
+                    We have the answers! Call 603-428-6060
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <div class="bg-white p-6 rounded-2xl border border-[#D5BBD3] shadow-sm flex items-center justify-center">
+                  <img src="/images/service-area-map.png" alt="Service area map" class="max-h-[300px] w-auto object-contain" onerror="this.src='../public/images/service-area-map.png'">
+                </div>
+              </div>
+            </div>
+
+            <!-- 4 Service cards -->
+            <div>
+              <div class="text-center max-w-xl mx-auto mb-8">
+                <h3 class="font-serif font-bold text-2xl sm:text-3xl text-[#002D55]">Our Groundwater Services</h3>
+                <p class="text-sm text-[#477397] mt-1">Southern & Central New Hampshire Well & Pump Solutions</p>
+              </div>
+
+              <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+                <div class="bg-white border border-[#D5BBD3] border-t-4 border-t-[#6E2C6B] rounded-xl p-5 hover:bg-[#E8DFE9] transition-all">
+                  <h4 class="font-bold text-lg text-[#002D55]">Drilling water wells</h4>
+                  <p class="text-xs text-[#477397] mt-2">Larger-than-standard artesian boreholes that give you more immediate water reserve.</p>
+                  <span class="text-xs font-bold text-[#6E2C6B] mt-4 block">See services ↗</span>
+                </div>
+                <div class="bg-white border border-[#D5BBD3] border-t-4 border-t-[#6E2C6B] rounded-xl p-5 hover:bg-[#E8DFE9] transition-all">
+                  <h4 class="font-bold text-lg text-[#002D55]">Installing and servicing pumps</h4>
+                  <p class="text-xs text-[#477397] mt-2">7 days a week service with full stock in our Henniker shop.</p>
+                  <span class="text-xs font-bold text-[#6E2C6B] mt-4 block">See services ↗</span>
+                </div>
+                <div class="bg-white border border-[#D5BBD3] border-t-4 border-t-[#6E2C6B] rounded-xl p-5 hover:bg-[#E8DFE9] transition-all">
+                  <h4 class="font-bold text-lg text-[#002D55]">Hydrofracturing</h4>
+                  <p class="text-xs text-[#477397] mt-2">99% of the time, wells begin producing more water after hydrofracking.</p>
+                  <span class="text-xs font-bold text-[#6E2C6B] mt-4 block">See services ↗</span>
+                </div>
+                <div class="bg-white border border-[#D5BBD3] border-t-4 border-t-[#6E2C6B] rounded-xl p-5 hover:bg-[#E8DFE9] transition-all">
+                  <h4 class="font-bold text-lg text-[#002D55]">Water testing and filtration</h4>
+                  <p class="text-xs text-[#477397] mt-2">Testing and custom filtration systems for radon, arsenic, and iron.</p>
+                  <span class="text-xs font-bold text-[#6E2C6B] mt-4 block">See services ↗</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </div>
+    </div>
+
+    <!-- 2. AUDIT / BEFORE VS AFTER COMPARISON MODE -->
+    <div id="section-audit" class="w-full max-w-6xl hidden space-y-8 py-6">
+      
+      <div class="bg-[#002D55] text-white p-8 rounded-3xl border border-[#16466F] shadow-2xl">
+        <h2 class="text-3xl font-bold mb-2">Phase 1: Design Changes & Architectural Rationale</h2>
+        <p class="ui-font text-sm text-[#C5D6E4]">Detailed comparison of the existing website vs. the proposed Finalized Hybrid Design (Concept 1 + Concept 2):</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Existing Design Column -->
+        <div class="bg-[#0D1B2A] p-6 rounded-2xl border border-red-900/40 space-y-4">
+          <div class="flex items-center justify-between border-b border-red-900/40 pb-3">
+            <span class="ui-font text-xs font-bold uppercase tracking-wider text-red-400 bg-red-950/60 px-3 py-1 rounded-full border border-red-800">
+              Current Implementation
+            </span>
+            <span class="ui-font text-xs text-gray-400">Existing Baseline</span>
+          </div>
+
+          <div class="space-y-4 text-sm text-gray-300">
+            <div>
+              <p class="font-bold text-white mb-1">1. Hero Visual Hierarchy:</p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Hero headline and call button sit alongside a ghost button ("Free troubleshooting guides"). The emergency urgency and historical authority are stated in plain paragraph text without dedicated visual anchors.
+              </p>
+            </div>
+
+            <div>
+              <p class="font-bold text-white mb-1">2. Three-Card Alignment:</p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Cards overlap the hero using negative top margins (<code class="text-red-300">-mt-12 sm:-mt-16</code>). While functional, this causes varying heights and vertical crowding on medium screens (tablets and small laptops).
+              </p>
+            </div>
+
+            <div>
+              <p class="font-bold text-white mb-1">3. Emergency Action Visibility:</p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Emergency availability (7 days a week) is split between Card 3 and header. Homeowners in urgent crisis have to scan multiple text blocks to confirm immediate technician dispatch.
+              </p>
+            </div>
+
+            <div>
+              <p class="font-bold text-white mb-1">4. Company Identity & Authority:</p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                The State of NH License #1 and 1936 founding are displayed in a modest left-bordered paragraph rather than celebrated as New Hampshire's foremost groundwater credentials.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Proposed Hybrid Design Column -->
+        <div class="bg-[#0D243A] p-6 rounded-2xl border border-emerald-900/40 space-y-4">
+          <div class="flex items-center justify-between border-b border-emerald-900/40 pb-3">
+            <span class="ui-font text-xs font-bold uppercase tracking-wider text-emerald-400 bg-emerald-950/60 px-3 py-1 rounded-full border border-emerald-800">
+              Proposed Finalized Hybrid
+            </span>
+            <span class="ui-font text-xs text-emerald-300">Concept 1 + Concept 2</span>
+          </div>
+
+          <div class="space-y-4 text-sm text-gray-200">
+            <div>
+              <p class="font-bold text-white mb-1">1. Elevated Heritage & Trust Hierarchy:</p>
+              <p class="text-xs text-[#C5D6E4] leading-relaxed">
+                Combines Fraunces editorial elegance with a 3-pillar verified credential bar (<strong class="text-white">NH License #1</strong>, <strong class="text-white">Founded 1936</strong>, <strong class="text-white">7-Day Service</strong>) directly below the primary CTA.
+              </p>
+            </div>
+
+            <div>
+              <p class="font-bold text-white mb-1">2. Equal-Height Staggered Triptych:</p>
+              <p class="text-xs text-[#C5D6E4] leading-relaxed">
+                The 3 cards use natural flexbox stretch to guarantee identical card heights across all viewports. Individual staggered upward reveals (<code class="text-emerald-300">0ms / 120ms / 240ms</code>) create a sophisticated entrance.
+              </p>
+            </div>
+
+            <div>
+              <p class="font-bold text-white mb-1">3. Clear & Tactful Emergency Access:</p>
+              <p class="text-xs text-[#C5D6E4] leading-relaxed">
+                Live dispatch indicator ("Technicians On Duty Today") in the header bar and Card 3 gives anxious homeowners instant confirmation without turning the site into a garish siren.
+              </p>
+            </div>
+
+            <div>
+              <p class="font-bold text-white mb-1">4. Authentic Archival Framing:</p>
+              <p class="text-xs text-[#C5D6E4] leading-relaxed">
+                Authentic rotary drilling rig photography is framed with subtle dashed inner borders, a floating "7 days a week" badge, and a photographic location caption plate.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- Interactive JavaScript -->
+  <script>
+    function setDevice(device) {
+      const wrapper = document.getElementById('canvas-wrapper');
+      document.querySelectorAll('.device-btn').forEach(btn => {
+        btn.classList.remove('bg-[#16466F]', 'text-white');
+        btn.classList.add('text-[#C5D6E4]');
+      });
+
+      if (device === 'desktop') {
+        wrapper.className = 'device-desktop bg-[#F8F7F9] text-[#172638] rounded-2xl shadow-2xl overflow-hidden border border-[#16466F]/60 transition-all duration-300';
+        document.getElementById('btn-desktop').classList.add('bg-[#16466F]', 'text-white');
+      } else if (device === 'tablet') {
+        wrapper.className = 'device-tablet bg-[#F8F7F9] text-[#172638] rounded-3xl shadow-2xl overflow-hidden border-8 border-[#1A2839] transition-all duration-300';
+        document.getElementById('btn-tablet').classList.add('bg-[#16466F]', 'text-white');
+      } else if (device === 'mobile') {
+        wrapper.className = 'device-mobile bg-[#F8F7F9] text-[#172638] rounded-4xl shadow-2xl overflow-hidden border-8 border-[#1A2839] transition-all duration-300';
+        document.getElementById('btn-mobile').classList.add('bg-[#16466F]', 'text-white');
+      }
+    }
+
+    function setViewMode(mode) {
+      const previewSec = document.getElementById('section-preview');
+      const auditSec = document.getElementById('section-audit');
+      document.querySelectorAll('.mode-btn').forEach(b => {
+        b.classList.remove('bg-[#6E2C6B]', 'text-white', 'shadow-xs');
+        b.classList.add('text-[#C5D6E4]');
+      });
+
+      if (mode === 'preview') {
+        previewSec.classList.remove('hidden');
+        auditSec.classList.add('hidden');
+        document.getElementById('btn-mode-preview').classList.add('bg-[#6E2C6B]', 'text-white', 'shadow-xs');
+      } else {
+        previewSec.classList.add('hidden');
+        auditSec.classList.remove('hidden');
+        document.getElementById('btn-mode-audit').classList.add('bg-[#6E2C6B]', 'text-white', 'shadow-xs');
+      }
+    }
+  </script>
+
+</body>
+</html>
