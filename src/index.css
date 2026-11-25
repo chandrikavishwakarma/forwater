@@ -1,0 +1,89 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Option 1: Elegant & Premium Plum + Navy Palette */
+    --deep-navy: #002D55;
+    --plum: #6E2C6B;
+    --soft-plum: #854B82;
+    --muted-mauve: #A875A5;
+    --light-lavender: #D5BBD3;
+    --classic-blue: #16466F;
+    --muted-blue: #477397;
+    --powder-blue: #C5D6E4;
+    --soft-lavender-white: #E8DFE9;
+    --off-white: #F8F7F9;
+    --white: #FFFFFF;
+    --dark-text: #172638;
+
+    /* Theme Role Mappings */
+    --ink: #002D55;
+    --spruce: #16466F;
+    --spruce2: #16466F;
+    --mist: #E8DFE9;
+    --amber: #6E2C6B;
+    --amber-ink: #FFFFFF;
+    --stone: #477397;
+    --line: #D5BBD3;
+    --text: #172638;
+    --bg: #F8F7F9;
+    --card: #FFFFFF;
+
+    /* Primary Font: 'Fraunces', Georgia, serif */
+    --font-fraunces: 'Fraunces', Georgia, serif;
+    --serif: 'Fraunces', Georgia, serif;
+    --sans: 'Fraunces', Georgia, serif;
+  }
+
+  *, *::before, *::after {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    font-family: 'Fraunces', Georgia, serif;
+    background-color: var(--bg);
+    color: var(--text);
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    overflow-x: hidden;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    color: var(--text);
+    background-color: var(--bg);
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 400;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Fraunces', Georgia, serif;
+    letter-spacing: -0.015em;
+    color: var(--text);
+  }
+
+  p, span, a, button, input, select, textarea, label {
+    font-family: 'Fraunces', Georgia, serif;
+  }
+}
+
+/* Print styles for coupon modal */
+@media print {
+  header, footer, nav, button:not(.printable) {
+    display: none !important;
+  }
+  .printable-area {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+  }
+}
